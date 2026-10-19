@@ -167,14 +167,15 @@
     if (!hero || !stage || !canvas) return;
 
     const ctx = canvas.getContext("2d");
-    const NUM_SCENES = 3;
+    const NUM_SCENES = 4;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Escenas: 0: Centro (Magnates), 1: Derecha (Problema), 2: Izquierda (Solución)
+    // 0: Intro (Centro), 1: Problema (Derecha), 2: Solución (IZQUIERDA - lugar correcto), 3: Fondo
     const KEYFRAMES = [
-      { sp: 0.3, tilt: 0.35, sz: 0.32, x: 0.50, y: 0.44 },
-      { sp: 1.8, tilt: 0.90, sz: 0.24, x: 0.77, y: 0.50 },
-      { sp: 3.2, tilt: -0.4, sz: 0.24, x: 0.23, y: 0.50 }
+      { sp: 0.3, tilt: 0.35, sz: 0.44, x: 0.50, y: 0.44 },
+      { sp: 1.8, tilt: 0.90, sz: 0.40, x: 0.77, y: 0.50 },
+      { sp: 3.2, tilt: -0.4, sz: 0.40, x: 0.23, y: 0.50 },
+      { sp: 4.5, tilt: 0.20, sz: 0.32, x: 0.50, y: 0.50 }
     ];
 
     const PHI = 1.618;
@@ -212,7 +213,7 @@
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    const clamp = (val) => (val < 0 ? 0 : val > 1 ? 1 : val);
+    const clamp = (val, min = 0, max = 1) => (val < min ? min : val > max ? max : val);
     const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
     const lerp = (a, b, f) => a + (b - a) * f;
 
@@ -227,15 +228,38 @@
 
       if (!prefersReducedMotion) timer += deltaTime;
 
-      const scrollY = window.scrollY || window.pageYOffset || 0;
-      const vh = Math.max(1, window.innerHeight);
+      const screenIntro = document.querySelector(".screen-intro");
+      const screenProblem = document.querySelector(".screen-problem");
+      const screenSolution = document.querySelector(".screen-solution");
 
-      // t va de 0 (pantalla 1: Magnates) a 1 (pantalla 2: Problema) a 2 (pantalla 3: Solución)
-      const rawT = clamp(scrollY / vh, 0, 2);
-      progress += (rawT - progress) * (1 - Math.exp(-deltaTime * 7));
+      const vh = Math.max(1, window.innerHeight);
+      const mid = vh / 2;
+
+      let rawT = 0;
+      if (screenIntro && screenProblem && screenSolution) {
+        const rIntro = screenIntro.getBoundingClientRect();
+        const rProb = screenProblem.getBoundingClientRect();
+        const rSol = screenSolution.getBoundingClientRect();
+
+        if (rSol.top <= mid) {
+          // En Solución o más abajo hacia stack
+          rawT = 2 + clamp((mid - rSol.top) / vh, 0, 1);
+        } else if (rProb.top <= mid) {
+          // Entre Problema (t=1) y Solución (t=2)
+          rawT = 1 + clamp((mid - rProb.top) / Math.max(1, rSol.top - rProb.top), 0, 1);
+        } else {
+          // Entre Intro (t=0) y Problema (t=1)
+          rawT = clamp((mid - rIntro.top) / Math.max(1, rProb.top - rIntro.top), 0, 1);
+        }
+      } else {
+        const scrollY = window.scrollY || window.pageYOffset || 0;
+        rawT = clamp(scrollY / vh, 0, 3);
+      }
+
+      progress += (rawT - progress) * (1 - Math.exp(-deltaTime * 8));
 
       const isMobile = width < 860;
-      const index = Math.min(Math.floor(progress), NUM_SCENES - 2);
+      const index = Math.min(Math.floor(progress), 2);
       const factor = easeInOutCubic(clamp(progress - index, 0, 1));
 
       const currentKeyframe = KEYFRAMES[index];
@@ -247,18 +271,10 @@
       let targetY = lerp(currentKeyframe.y, nextKeyframe.y, factor);
       let targetSz = lerp(currentKeyframe.sz, nextKeyframe.sz, factor);
 
-      // Cuando scrollea más allá del hero (hacia stack, servicios, contacto):
-      if (scrollY > vh * 2) {
-        const beyondFactor = clamp((scrollY - vh * 2) / (vh * 1.5), 0, 1);
-        targetX = lerp(targetX, 0.50, beyondFactor);
-        targetY = lerp(targetY, 0.48, beyondFactor);
-        targetSz = 0.28;
-      }
-
       if (isMobile) {
         targetX = 0.5;
-        targetY = 0.26;
-        targetSz = 0.22;
+        targetY = 0.28;
+        targetSz = 0.28;
       }
 
       const scale = targetSz * Math.min(width, height);
