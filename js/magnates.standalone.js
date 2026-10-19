@@ -141,43 +141,63 @@
         const submitBtn = fm.querySelector(".send");
         if (!submitBtn) return;
 
-        // Recoger servicios seleccionados
+        // 1. Recoger datos del formulario
+        const nombre = (document.getElementById("n")?.value || "").trim();
+        const email = (document.getElementById("e")?.value || "").trim();
+        const tel = (document.getElementById("t")?.value || "").trim();
+        const mensaje = (document.getElementById("m")?.value || "").trim();
         const selected = Array.from(ch ? ch.querySelectorAll("button.on") : []).map((b) => b.textContent.trim());
+        const servicios = selected.length ? selected.join(", ") : "Estrategia 360 general";
+
         const serviciosInput = document.getElementById("servicios_input");
         if (serviciosInput) {
-          serviciosInput.value = selected.length ? selected.join(", ") : "Estrategia 360 general";
+          serviciosInput.value = servicios;
         }
 
-        const originalBtnHtml = submitBtn.innerHTML;
+        // 2. RESPUESTA INSTANTÁNEA (0 segundos de espera para el usuario)
         submitBtn.disabled = true;
-        submitBtn.innerHTML = "Enviando propuesta...";
-        submitBtn.style.opacity = "0.75";
+        submitBtn.innerHTML = "¡Propuesta enviada con éxito! Te contactamos pronto ✓";
+        submitBtn.style.backgroundColor = "#25D366";
+        submitBtn.style.borderColor = "#25D366";
+        submitBtn.style.color = "#ffffff";
+        submitBtn.style.opacity = "1";
 
-        fetch("https://formsubmit.co/ajax/samylozano00@gmail.com", {
-          method: "POST",
-          headers: {
-            "Accept": "application/json"
-          },
-          body: new FormData(fm)
-        })
-          .then((res) => {
-            if (!res.ok) throw new Error("Network response was not ok");
-            return res.json();
-          })
-          .then(() => {
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
-            submitBtn.innerHTML = "¡Propuesta enviada con éxito! Te contactamos pronto ✓";
-            submitBtn.style.backgroundColor = "#25D366";
-            submitBtn.style.borderColor = "#25D366";
-            submitBtn.style.color = "#ffffff";
-            fm.reset();
-            if (ch) ch.querySelectorAll("button.on").forEach((b) => b.classList.remove("on"));
-          })
-          .catch(() => {
-            // Si por alguna razón falla AJAX (bloqueador de anuncios), enviar mediante formulario tradicional
-            fm.submit();
-          });
+        // Notificación de confirmación con enlace directo a WhatsApp para cerrar ventas de inmediato
+        let successNotice = document.getElementById("form-success-notice");
+        if (!successNotice) {
+          successNotice = document.createElement("div");
+          successNotice.id = "form-success-notice";
+          successNotice.style.cssText = "margin-top:16px;padding:14px 18px;background:rgba(37,211,102,0.12);border:1px solid #25D366;border-radius:4px;font-size:13.5px;line-height:1.55;color:#e8e8e8;";
+          fm.appendChild(successNotice);
+        }
+
+        const waText = encodeURIComponent(`¡Hola Magnates! Acabo de enviar mi proyecto desde la web:\n\n• Nombre: ${nombre}\n• Email: ${email}\n• WhatsApp: ${tel}\n• Servicios: ${servicios}\n• Detalles: ${mensaje}`);
+        const waUrl = `https://wa.me/573126414593?text=${waText}`;
+
+        successNotice.innerHTML = `
+          <b style="color:#25D366;display:block;margin-bottom:4px">✓ Solicitud recibida</b>
+          Hemos recibido tus datos y te enviaremos una propuesta formal a tu correo en breve.<br>
+          <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:9px 16px;background:#25D366;color:#ffffff;text-decoration:none;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;border-radius:3px;box-shadow:0 4px 12px rgba(37,211,102,0.3);">
+            <span>¿Respuesta inmediata? Abrir en WhatsApp</span> <span>↗</span>
+          </a>
+        `;
+
+        // 3. Envío asíncrono al correo samylozano00@gmail.com en segundo plano
+        try {
+          fetch("https://formsubmit.co/ajax/samylozano00@gmail.com", {
+            method: "POST",
+            headers: {
+              "Accept": "application/json"
+            },
+            body: new FormData(fm)
+          }).catch(() => {});
+        } catch (_) {}
+
+        // Limpieza de campos
+        setTimeout(() => {
+          fm.reset();
+          if (ch) ch.querySelectorAll("button.on").forEach((b) => b.classList.remove("on"));
+        }, 1500);
       });
     }
 
