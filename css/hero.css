@@ -3,7 +3,7 @@
    ========================================================================== */
 #hero {
   position: relative;
-  height: 400vh;
+  height: 320vh; /* Altura optimizada: sin zonas muertas de scroll */
 }
 
 .stage {
@@ -33,55 +33,58 @@ canvas {
   z-index: 2;
 }
 
+/* Escenas: Flexbox nativo para posicionamiento perfecto sin conflictos de transform */
 .sc {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 5;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5vw;
-}
-
-[data-sc] {
+  box-sizing: border-box;
+  padding: 90px 6vw 40px; /* Respeta el navbar superior */
   opacity: 0;
   visibility: hidden;
-  will-change: transform, opacity;
-  pointer-events: auto;
+  will-change: opacity;
 }
 
-/* Base Content Container within scenes */
+.sc-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.sc-left {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sc-right {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Contenido dentro de cada escena */
 .hero-content {
-  position: absolute;
-  width: 90%;
-  max-width: 1200px;
+  position: relative;
+  width: 100%;
+  pointer-events: auto;
+  will-change: transform;
 }
 
-.hero-center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.sc-center .hero-content {
+  max-width: 860px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.hero-left {
-  left: 6vw;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 540px;
+.sc-left .hero-content {
+  max-width: 520px;
   text-align: left;
 }
 
-.hero-right {
-  right: 6vw;
-  left: auto;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 560px;
+.sc-right .hero-content {
+  max-width: 540px;
   text-align: left;
 }
 
@@ -89,13 +92,13 @@ canvas {
 .hero-badge {
   display: inline-block;
   font-size: 11px;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--bone);
   border: 1px solid rgba(227, 19, 27, 0.45);
-  background: rgba(227, 19, 27, 0.08);
-  padding: 8px 18px;
-  margin-bottom: 20px;
+  background: rgba(227, 19, 27, 0.1);
+  padding: 7px 16px;
+  margin-bottom: 14px;
   border-radius: 999px;
   backdrop-filter: blur(8px);
 }
@@ -109,7 +112,7 @@ canvas {
   background: rgba(255, 90, 74, 0.12);
   border-left: 3px solid var(--red);
   padding: 6px 14px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-weight: 700;
 }
 
@@ -122,28 +125,28 @@ canvas {
   background: rgba(227, 19, 27, 0.2);
   border-left: 3px solid var(--red);
   padding: 6px 14px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-weight: 700;
 }
 
 .hero-tag-final {
   display: inline-block;
-  font-size: 12px;
-  letter-spacing: 0.3em;
+  font-size: 11px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--red);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-weight: 700;
 }
 
-/* Headings */
+/* Headings Proporcionados */
 .hero-title {
   font-family: var(--disp);
-  font-size: clamp(54px, 12vw, 150px);
-  line-height: 0.9;
-  letter-spacing: 0.02em;
+  font-size: clamp(42px, 7.5vw, 92px);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: #ffffff;
   text-shadow: 0 0 35px rgba(227, 19, 27, 0.55), 0 0 70px rgba(227, 19, 27, 0.2);
   animation: heroPulse 4s ease-in-out infinite alternate;
@@ -159,21 +162,21 @@ canvas {
 }
 
 .hero-subtitle {
-  font-size: clamp(14px, 1.6vw, 20px);
+  font-size: clamp(14px, 1.4vw, 18px);
   color: var(--bone);
-  max-width: 58ch;
-  line-height: 1.6;
-  margin: 0 auto 28px;
+  max-width: 52ch;
+  line-height: 1.55;
+  margin: 0 auto 22px;
 }
 
 .hero-problem-title,
 .hero-solution-title {
   font-family: var(--disp);
-  font-size: clamp(34px, 4.2vw, 56px);
+  font-size: clamp(30px, 3.8vw, 48px);
   line-height: 1.05;
   text-transform: uppercase;
   color: #ffffff;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
 }
 
 .text-red {
@@ -182,29 +185,29 @@ canvas {
 
 .hero-problem-desc,
 .hero-solution-desc {
-  font-size: clamp(14px, 1.2vw, 16px);
-  line-height: 1.65;
+  font-size: clamp(13.5px, 1.1vw, 15.5px);
+  line-height: 1.6;
   color: #cccccc;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
 }
 
 /* Bullet Points (Problem Scene) */
 .problem-points {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .point-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: rgba(15, 15, 15, 0.7);
+  background: rgba(15, 15, 15, 0.85);
   border: 1px solid #282828;
   border-left: 2px solid var(--red);
-  padding: 12px 16px;
-  font-size: 13.5px;
-  line-height: 1.5;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.45;
   color: #eeeeee;
   backdrop-filter: blur(6px);
 }
@@ -212,7 +215,7 @@ canvas {
 .point-bullet {
   color: var(--red);
   font-weight: 900;
-  font-size: 14px;
+  font-size: 13px;
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -221,13 +224,13 @@ canvas {
 .solution-pillars {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .pillar-item {
-  background: rgba(18, 18, 18, 0.75);
+  background: rgba(18, 18, 18, 0.85);
   border: 1px solid #333333;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 4px;
   backdrop-filter: blur(6px);
   transition: border-color 0.25s, transform 0.25s;
@@ -240,15 +243,15 @@ canvas {
 
 .pillar-item b {
   display: block;
-  font-size: 14px;
+  font-size: 13.5px;
   color: #ffffff;
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+  margin-bottom: 3px;
 }
 
 .pillar-item p {
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 12.5px;
+  line-height: 1.45;
   color: var(--bone);
   margin: 0;
 }
@@ -256,68 +259,68 @@ canvas {
 /* Final Branding Scene */
 .hero-final-title {
   font-family: var(--disp);
-  font-size: clamp(50px, 11vw, 130px);
+  font-size: clamp(42px, 7.5vw, 92px);
   line-height: 0.95;
   text-transform: uppercase;
   color: #ffffff;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   text-shadow: 0 0 30px rgba(227, 19, 27, 0.6);
 }
 
 .hero-final-desc {
-  font-size: clamp(15px, 1.5vw, 19px);
+  font-size: clamp(14px, 1.4vw, 18px);
   color: var(--bone);
-  max-width: 50ch;
-  line-height: 1.6;
-  margin: 0 auto 30px;
+  max-width: 48ch;
+  line-height: 1.55;
+  margin: 0 auto 24px;
 }
 
 /* Actions & Scroll Indicator */
 .hero-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.hero-left .hero-actions,
-.hero-right .hero-actions {
+.sc-left .hero-actions,
+.sc-right .hero-actions {
   justify-content: flex-start;
 }
 
 .scroll-indicator {
-  margin-top: 40px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  opacity: 0.75;
+  gap: 6px;
+  opacity: 0.7;
   animation: scrollFloat 2.5s ease-in-out infinite;
 }
 
 .scroll-indicator span {
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--bone);
 }
 
 .mouse-icon {
-  width: 18px;
-  height: 28px;
+  width: 16px;
+  height: 24px;
   border: 2px solid var(--bone);
-  border-radius: 10px;
+  border-radius: 9px;
   position: relative;
 }
 
 .mouse-icon::after {
   content: "";
   position: absolute;
-  top: 5px;
+  top: 4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 3px;
-  height: 6px;
+  width: 2.5px;
+  height: 5px;
   background: var(--red);
   border-radius: 2px;
   animation: mouseWheel 1.6s ease-in-out infinite;
@@ -325,24 +328,31 @@ canvas {
 
 @keyframes mouseWheel {
   0% { transform: translate(-50%, 0); opacity: 1; }
-  100% { transform: translate(-50%, 10px); opacity: 0; }
+  100% { transform: translate(-50%, 8px); opacity: 0; }
 }
 
 @keyframes scrollFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
+  50% { transform: translateY(4px); }
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 860px) {
-  .hero-left,
-  .hero-right {
-    left: 5vw;
-    right: 5vw;
+  .sc {
+    padding: 85px 5vw 30px;
+    align-items: flex-end; /* En móvil el texto va en la mitad inferior */
+    padding-bottom: 40px;
+  }
+
+  .sc-left,
+  .sc-right {
+    justify-content: center;
+  }
+
+  .sc-left .hero-content,
+  .sc-right .hero-content {
     max-width: none;
     text-align: center;
-    top: 58%;
-    transform: translateY(-50%);
   }
 
   .problem-points,

@@ -319,11 +319,36 @@
         ctx.fill();
       });
 
-      // Animate scene visibility based on current progress t
+      // Función de visibilidad sin solapamiento para cada escena
+      function getSceneVisibility(sceneIndex, curT) {
+        if (sceneIndex === 0) {
+          if (curT <= 0.40) return 1;
+          if (curT >= 0.75) return 0;
+          return (0.75 - curT) / 0.35;
+        }
+        if (sceneIndex === 1) {
+          if (curT <= 0.65 || curT >= 1.70) return 0;
+          if (curT >= 0.85 && curT <= 1.45) return 1;
+          if (curT < 0.85) return (curT - 0.65) / 0.20;
+          return (1.70 - curT) / 0.25;
+        }
+        if (sceneIndex === 2) {
+          if (curT <= 1.55 || curT >= 2.60) return 0;
+          if (curT >= 1.75 && curT <= 2.35) return 1;
+          if (curT < 1.75) return (curT - 1.55) / 0.20;
+          return (2.60 - curT) / 0.25;
+        }
+        if (sceneIndex === 3) {
+          if (curT <= 2.45) return 0;
+          if (curT >= 2.70) return 1; // Se mantiene en 1 para que nunca quede pantalla en negro
+          return (curT - 2.45) / 0.25;
+        }
+        return 0;
+      }
+
+      // Animate scene visibility
       items.forEach(({ el, scene }) => {
-        const diff = t - scene;
-        // Visible when within 0.7 units of scene
-        const visibilityFactor = clamp(1 - (Math.abs(diff) - 0.22) / 0.45);
+        const visibilityFactor = clamp(getSceneVisibility(scene, t));
         const style = el.style;
 
         if (visibilityFactor <= 0.01) {
@@ -335,8 +360,12 @@
           style.opacity = visibilityFactor.toFixed(3);
           style.pointerEvents = visibilityFactor > 0.6 ? "auto" : "none";
           if (!prefersReducedMotion) {
-            const translateY = ((1 - visibilityFactor) * 26 * (diff < 0 ? 1 : -1)).toFixed(1);
-            style.transform = `translateY(${translateY}px)`;
+            const inner = el.querySelector(".hero-content");
+            if (inner) {
+              const diff = t - scene;
+              const translateY = ((1 - visibilityFactor) * 18 * (diff < 0 ? 1 : -1)).toFixed(1);
+              inner.style.transform = `translateY(${translateY}px)`;
+            }
           }
         }
       });
