@@ -55,9 +55,10 @@
     </div>
   </nav>
 
-  <!-- Hero Section with 3D Canvas Stage -->
+  <!-- Hero Section with 3D Canvas Background & Vertical Flow Screens -->
   <section id="hero">
-    <div class="stage" id="stage">
+    <!-- 3D Canvas Sticky Background Stage -->
+    <div class="stage-bg" id="stage">
       <!-- Glow Arc Graphic -->
       <svg class="arc" viewBox="0 0 800 300" aria-hidden="true">
         <defs>
@@ -71,94 +72,83 @@
 
       <!-- 3D Canvas -->
       <canvas id="cv" aria-hidden="true"></canvas>
+    </div>
 
-      <!-- Scene 0: MAGNATES INTRO -->
-      <div class="sc sc-center" data-sc="0">
-        <div class="hero-content">
-          <div class="hero-badge">Agencia de Marketing Digital 360 · Cartagena</div>
-          <h1 class="hero-title">Magnates</h1>
-          <p class="hero-subtitle">
-            Hacemos que tu marca lidere en redes, posicione en Google y venda más todos los días.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="#contacto">Cotizar proyecto ↗</a>
-            <a class="btn o" href="#servicios">Ver servicios</a>
+    <!-- Pantalla 1: INTRO MAGNATES -->
+    <div class="hero-screen screen-intro">
+      <div class="hero-content">
+        <div class="hero-badge">Agencia de Marketing Digital 360 · Cartagena</div>
+        <h1 class="hero-title">Magnates</h1>
+        <p class="hero-subtitle">
+          Hacemos que tu marca lidere en redes, posicione en Google y venda más todos los días.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#contacto">Cotizar proyecto ↗</a>
+          <a class="btn o" href="#servicios">Ver servicios</a>
+        </div>
+        <div class="scroll-indicator">
+          <span>Haz scroll para descubrir</span>
+          <div class="mouse-icon"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pantalla 2: EL PROBLEMA (Aparece abajo al hacer scroll) -->
+    <div class="hero-screen screen-problem">
+      <div class="hero-content">
+        <div class="hero-tag-problem">✦ 01 · El Problema</div>
+        <h2 class="hero-problem-title">
+          ¿Tus redes no crecen?<br>
+          <span class="text-red">¿Publicas y no vendes?</span>
+        </h2>
+        <p class="hero-problem-desc">
+          En un mercado saturado como Cartagena, los likes vacíos no pagan facturas ni nóminas. Sin una estrategia probada de captación y conversión, tu inversión se pierde y tus clientes se van con la competencia.
+        </p>
+        <div class="problem-points">
+          <div class="point-item">
+            <span class="point-bullet">✕</span>
+            <span>Campañas en Meta Ads que queman dinero sin generar prospectos calificados.</span>
           </div>
-          <div class="scroll-indicator">
-            <span>Haz scroll para descubrir</span>
-            <div class="mouse-icon"></div>
+          <div class="point-item">
+            <span class="point-bullet">✕</span>
+            <span>Páginas web lentas y desactualizadas que no transmiten confianza ni cierran ventas.</span>
+          </div>
+          <div class="point-item">
+            <span class="point-bullet">✕</span>
+            <span>Invisibilidad en Google Maps y búsquedas locales frente a otros negocios.</span>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Scene 1: EL PROBLEMA -->
-      <div class="sc sc-left" data-sc="1">
-        <div class="hero-content">
-          <div class="hero-tag-problem">✦ 01 · El Problema</div>
-          <h2 class="hero-problem-title">
-            ¿Tus redes no crecen?<br>
-            <span class="text-red">¿Publicas y no vendes?</span>
-          </h2>
-          <p class="hero-problem-desc">
-            En un mercado saturado como Cartagena, los likes vacíos no pagan facturas ni nóminas. Sin una estrategia probada de captación y conversión, tu inversión se pierde y tus clientes se van con la competencia.
-          </p>
-          <div class="problem-points">
-            <div class="point-item">
-              <span class="point-bullet">✕</span>
-              <span>Campañas en Meta Ads que queman dinero sin generar prospectos calificados.</span>
-            </div>
-            <div class="point-item">
-              <span class="point-bullet">✕</span>
-              <span>Páginas web lentas y desactualizadas que no transmiten confianza ni cierran ventas.</span>
-            </div>
-            <div class="point-item">
-              <span class="point-bullet">✕</span>
-              <span>Invisibilidad en Google Maps y búsquedas locales frente a otros negocios.</span>
-            </div>
+    <!-- Pantalla 3: LA SOLUCIÓN (Aparece más abajo al seguir scrolleando) -->
+    <div class="hero-screen screen-solution">
+      <div class="hero-content">
+        <div class="hero-tag-solution">✦ 02 · La Solución</div>
+        <h2 class="hero-solution-title">
+          Aquí es donde<br>
+          <span class="text-red">entramos nosotros</span>
+        </h2>
+        <p class="hero-solution-desc">
+          En MAGNATES construimos un ecosistema de marketing 360° diseñado para una sola cosa: <strong>hacer crecer tu facturación</strong> con datos reales y retorno medible.
+        </p>
+        <div class="solution-pillars">
+          <div class="pillar-item">
+            <b>01. Estrategia &amp; Meta Ads</b>
+            <p>Segmentación quirúrgica en Cartagena que convierte desconocidos en compradores recurrentes.</p>
+          </div>
+          <div class="pillar-item">
+            <b>02. Web &amp; Tiendas de Alta Conversión</b>
+            <p>Sitios ultra veloces en Shopify y WordPress creados específicamente para vender.</p>
+          </div>
+          <div class="pillar-item">
+            <b>03. SEO Local &amp; Reputación</b>
+            <p>Aparece de primero cuando turistas y residentes locales busquen tus servicios.</p>
           </div>
         </div>
-      </div>
-
-      <!-- Scene 2: LA SOLUCIÓN -->
-      <div class="sc sc-right" data-sc="2">
-        <div class="hero-content">
-          <div class="hero-tag-solution">✦ 02 · La Solución</div>
-          <h2 class="hero-solution-title">
-            Aquí es donde<br>
-            <span class="text-red">entramos nosotros</span>
-          </h2>
-          <p class="hero-solution-desc">
-            En MAGNATES construimos un ecosistema de marketing 360° diseñado para una sola cosa: <strong>hacer crecer tu facturación</strong> con datos reales y retorno medible.
-          </p>
-          <div class="solution-pillars">
-            <div class="pillar-item">
-              <b>01. Estrategia &amp; Meta Ads</b>
-              <p>Segmentación quirúrgica en Cartagena que convierte desconocidos en compradores recurrentes.</p>
-            </div>
-            <div class="pillar-item">
-              <b>02. Web &amp; Tiendas de Alta Conversión</b>
-              <p>Sitios ultra veloces en Shopify y WordPress creados específicamente para vender.</p>
-            </div>
-            <div class="pillar-item">
-              <b>03. SEO Local &amp; Reputación</b>
-              <p>Aparece de primero cuando turistas y residentes locales busquen tus servicios.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scene 3: MAGNATES BRANDING FINAL -->
-      <div class="sc sc-center" data-sc="3">
-        <div class="hero-content">
-          <div class="hero-tag-final">Tu marca al siguiente nivel</div>
-          <h2 class="hero-final-title">Magnates</h2>
-          <p class="hero-final-desc">
-            No esperes a que tu competencia tome la delantera en Cartagena. Empecemos a escalar tu negocio hoy.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="#contacto">Solicitar propuesta ↗</a>
-            <a class="btn o" href="#cartagena">Conoce nuestro mercado</a>
-          </div>
+        <div class="hero-actions" style="margin-top:24px">
+          <a class="btn" href="#contacto">Hablemos de tu marca ↗</a>
+          <a class="btn o" href="#cartagena">Mercado de Cartagena</a>
         </div>
       </div>
     </div>

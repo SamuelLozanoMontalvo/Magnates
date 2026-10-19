@@ -10,20 +10,14 @@ export function initHero3D() {
   if (!hero || !stage || !canvas) return;
 
   const ctx = canvas.getContext("2d");
-  const items = Array.from(stage.querySelectorAll("[data-sc]")).map((el) => ({
-    el,
-    scene: Number(el.dataset.sc)
-  }));
-
-  const NUM_SCENES = 4;
+  const NUM_SCENES = 3;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Keyframes: 0: Centro (Magnates), 1: Derecha (Problema a la izq), 2: Izquierda (Solución a la der), 3: Centro (Cierre)
+  // Escenas: 0: Centro (Magnates), 1: Derecha (Problema), 2: Izquierda (Solución)
   const KEYFRAMES = [
-    { sp: 0.3, tilt: 0.35, sz: 0.34, x: 0.50, y: 0.44 },
-    { sp: 1.6, tilt: 0.90, sz: 0.25, x: 0.77, y: 0.50 },
-    { sp: 2.8, tilt: -0.4, sz: 0.25, x: 0.23, y: 0.50 },
-    { sp: 4.2, tilt: 0.20, sz: 0.40, x: 0.50, y: 0.44 }
+    { sp: 0.3, tilt: 0.35, sz: 0.32, x: 0.50, y: 0.44 },
+    { sp: 1.8, tilt: 0.90, sz: 0.24, x: 0.77, y: 0.50 },
+    { sp: 3.2, tilt: -0.4, sz: 0.24, x: 0.23, y: 0.50 }
   ];
 
   // 12 Vertices of an Icosahedron based on Golden Ratio PHI
@@ -85,7 +79,7 @@ export function initHero3D() {
 
     // Calculate scroll progress through hero section
     const heroRect = hero.getBoundingClientRect();
-    const scrollableDist = Math.max(1, heroRect.height - height);
+    const scrollableDist = Math.max(1, hero.offsetHeight - height);
     const rawProgress = clamp(-heroRect.top / scrollableDist);
     progress += (rawProgress - progress) * (1 - Math.exp(-deltaTime * 9));
 
@@ -105,7 +99,7 @@ export function initHero3D() {
     let targetSz = lerp(currentKeyframe.sz, nextKeyframe.sz, factor);
 
     if (isMobile) {
-      if ((index === 0 && factor > 0.4) || index === 1 || (index === 2 && factor < 0.6)) {
+      if ((index === 0 && factor > 0.4) || index === 1) {
         targetX = 0.5;
         targetY = 0.24;
         targetSz = 0.20;
@@ -174,57 +168,6 @@ export function initHero3D() {
       ctx.beginPath();
       ctx.arc(px, py, 2.4, 0, Math.PI * 2);
       ctx.fill();
-    });
-
-    // Función de visibilidad sin solapamiento para cada escena
-    function getSceneVisibility(sceneIndex, curT) {
-      if (sceneIndex === 0) {
-        if (curT <= 0.40) return 1;
-        if (curT >= 0.75) return 0;
-        return (0.75 - curT) / 0.35;
-      }
-      if (sceneIndex === 1) {
-        if (curT <= 0.65 || curT >= 1.70) return 0;
-        if (curT >= 0.85 && curT <= 1.45) return 1;
-        if (curT < 0.85) return (curT - 0.65) / 0.20;
-        return (1.70 - curT) / 0.25;
-      }
-      if (sceneIndex === 2) {
-        if (curT <= 1.55 || curT >= 2.60) return 0;
-        if (curT >= 1.75 && curT <= 2.35) return 1;
-        if (curT < 1.75) return (curT - 1.55) / 0.20;
-        return (2.60 - curT) / 0.25;
-      }
-      if (sceneIndex === 3) {
-        if (curT <= 2.45) return 0;
-        if (curT >= 2.70) return 1; // Se mantiene en 1 para que nunca quede pantalla en negro
-        return (curT - 2.45) / 0.25;
-      }
-      return 0;
-    }
-
-    // Animate scene visibility
-    items.forEach(({ el, scene }) => {
-      const visibilityFactor = clamp(getSceneVisibility(scene, t));
-      const style = el.style;
-
-      if (visibilityFactor <= 0.01) {
-        style.visibility = "hidden";
-        style.opacity = "0";
-        style.pointerEvents = "none";
-      } else {
-        style.visibility = "visible";
-        style.opacity = visibilityFactor.toFixed(3);
-        style.pointerEvents = visibilityFactor > 0.6 ? "auto" : "none";
-        if (!prefersReducedMotion) {
-          const inner = el.querySelector(".hero-content");
-          if (inner) {
-            const diff = t - scene;
-            const translateY = ((1 - visibilityFactor) * 18 * (diff < 0 ? 1 : -1)).toFixed(1);
-            inner.style.transform = `translateY(${translateY}px)`;
-          }
-        }
-      }
     });
   }
 

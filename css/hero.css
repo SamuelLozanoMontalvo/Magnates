@@ -1,18 +1,21 @@
 /* ==========================================================================
-   HERO & 3D CANVAS STAGE
+   HERO & 3D CANVAS STAGE (Flujo Vertical Natural sin zonas negras)
    ========================================================================== */
 #hero {
   position: relative;
-  height: 320vh; /* Altura optimizada: sin zonas muertas de scroll */
+  background: var(--ink);
 }
 
-.stage {
+/* El fondo 3D se mantiene como background sticky mientras el contenido se desplaza */
+.stage-bg {
   position: sticky;
   top: 0;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  position: relative;
+  z-index: 1;
+  margin-bottom: -300vh; /* Permite que las 3 pantallas de 100vh fluyan por encima */
+  pointer-events: none;
 }
 
 canvas {
@@ -20,7 +23,6 @@ canvas {
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
 }
 
 .arc {
@@ -30,47 +32,41 @@ canvas {
   width: 80%;
   opacity: 0.9;
   pointer-events: none;
-  z-index: 2;
 }
 
-/* Escenas: Flexbox nativo para posicionamiento perfecto sin conflictos de transform */
-.sc {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+/* Cada pantalla de contenido fluye verticalmente de forma 100% natural */
+.hero-screen {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
   z-index: 5;
   display: flex;
+  align-items: center;
   box-sizing: border-box;
-  padding: 90px 6vw 40px; /* Respeta el navbar superior */
-  opacity: 0;
-  visibility: hidden;
-  will-change: opacity;
+  padding: 100px 6vw 60px;
 }
 
-.sc-center {
+.screen-intro {
   justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
-.sc-left {
+.screen-problem {
   justify-content: flex-start;
-  align-items: center;
 }
 
-.sc-right {
+.screen-solution {
   justify-content: flex-end;
-  align-items: center;
 }
 
-/* Contenido dentro de cada escena */
+/* Contenido dentro de cada pantalla */
 .hero-content {
   position: relative;
   width: 100%;
   pointer-events: auto;
-  will-change: transform;
 }
 
-.sc-center .hero-content {
+.screen-intro .hero-content {
   max-width: 860px;
   text-align: center;
   display: flex;
@@ -78,13 +74,13 @@ canvas {
   align-items: center;
 }
 
-.sc-left .hero-content {
-  max-width: 520px;
+.screen-problem .hero-content {
+  max-width: 540px;
   text-align: left;
 }
 
-.sc-right .hero-content {
-  max-width: 540px;
+.screen-solution .hero-content {
+  max-width: 560px;
   text-align: left;
 }
 
@@ -109,7 +105,7 @@ canvas {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #ff5a4a;
-  background: rgba(255, 90, 74, 0.12);
+  background: rgba(255, 90, 74, 0.15);
   border-left: 3px solid var(--red);
   padding: 6px 14px;
   margin-bottom: 14px;
@@ -122,24 +118,14 @@ canvas {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #ffffff;
-  background: rgba(227, 19, 27, 0.2);
+  background: rgba(227, 19, 27, 0.22);
   border-left: 3px solid var(--red);
   padding: 6px 14px;
   margin-bottom: 14px;
   font-weight: 700;
 }
 
-.hero-tag-final {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-/* Headings Proporcionados */
+/* Headings */
 .hero-title {
   font-family: var(--disp);
   font-size: clamp(42px, 7.5vw, 92px);
@@ -202,20 +188,20 @@ canvas {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: rgba(15, 15, 15, 0.85);
+  background: rgba(15, 15, 15, 0.88);
   border: 1px solid #282828;
-  border-left: 2px solid var(--red);
-  padding: 10px 14px;
-  font-size: 13px;
-  line-height: 1.45;
+  border-left: 3px solid var(--red);
+  padding: 12px 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: #eeeeee;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
 
 .point-bullet {
   color: var(--red);
   font-weight: 900;
-  font-size: 13px;
+  font-size: 14px;
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -228,11 +214,11 @@ canvas {
 }
 
 .pillar-item {
-  background: rgba(18, 18, 18, 0.85);
+  background: rgba(18, 18, 18, 0.88);
   border: 1px solid #333333;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 4px;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
   transition: border-color 0.25s, transform 0.25s;
 }
 
@@ -243,36 +229,17 @@ canvas {
 
 .pillar-item b {
   display: block;
-  font-size: 13.5px;
+  font-size: 14px;
   color: #ffffff;
   letter-spacing: 0.04em;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .pillar-item p {
-  font-size: 12.5px;
-  line-height: 1.45;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--bone);
   margin: 0;
-}
-
-/* Final Branding Scene */
-.hero-final-title {
-  font-family: var(--disp);
-  font-size: clamp(42px, 7.5vw, 92px);
-  line-height: 0.95;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin: 0 0 14px;
-  text-shadow: 0 0 30px rgba(227, 19, 27, 0.6);
-}
-
-.hero-final-desc {
-  font-size: clamp(14px, 1.4vw, 18px);
-  color: var(--bone);
-  max-width: 48ch;
-  line-height: 1.55;
-  margin: 0 auto 24px;
 }
 
 /* Actions & Scroll Indicator */
@@ -283,8 +250,8 @@ canvas {
   justify-content: center;
 }
 
-.sc-left .hero-actions,
-.sc-right .hero-actions {
+.screen-problem .hero-actions,
+.screen-solution .hero-actions {
   justify-content: flex-start;
 }
 
@@ -338,19 +305,18 @@ canvas {
 
 /* Mobile Responsiveness */
 @media (max-width: 860px) {
-  .sc {
-    padding: 85px 5vw 30px;
-    align-items: flex-end; /* En móvil el texto va en la mitad inferior */
-    padding-bottom: 40px;
+  .hero-screen {
+    padding: 90px 5vw 40px;
+    align-items: flex-end;
   }
 
-  .sc-left,
-  .sc-right {
+  .screen-problem,
+  .screen-solution {
     justify-content: center;
   }
 
-  .sc-left .hero-content,
-  .sc-right .hero-content {
+  .screen-problem .hero-content,
+  .screen-solution .hero-content {
     max-width: none;
     text-align: center;
   }
