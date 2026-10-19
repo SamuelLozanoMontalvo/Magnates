@@ -77,33 +77,38 @@ export function initHero3D() {
       timer += deltaTime;
     }
 
-    // Calculate scroll progress through hero section
-    const heroRect = hero.getBoundingClientRect();
-    const scrollableDist = Math.max(1, hero.offsetHeight - height);
-    const rawProgress = clamp(-heroRect.top / scrollableDist);
-    progress += (rawProgress - progress) * (1 - Math.exp(-deltaTime * 9));
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    const vh = Math.max(1, window.innerHeight);
+
+    // t va de 0 (pantalla 1: Magnates) a 1 (pantalla 2: Problema) a 2 (pantalla 3: Solución)
+    const rawT = clamp(scrollY / vh, 0, 2);
+    progress += (rawT - progress) * (1 - Math.exp(-deltaTime * 7));
 
     const isMobile = width < 860;
-    const t = progress * (NUM_SCENES - 1);
-    const index = Math.min(Math.floor(t), NUM_SCENES - 2);
-    const localProgress = clamp(t - index);
-    const factor = easeInOutCubic(localProgress);
+    const index = Math.min(Math.floor(progress), NUM_SCENES - 2);
+    const factor = easeInOutCubic(clamp(progress - index, 0, 1));
 
     const currentKeyframe = KEYFRAMES[index];
     const nextKeyframe = KEYFRAMES[index + 1];
 
-    const spin = lerp(currentKeyframe.sp, nextKeyframe.sp, factor) + timer * 0.25;
+    const spin = lerp(currentKeyframe.sp, nextKeyframe.sp, factor) + timer * 0.22;
     const tilt = lerp(currentKeyframe.tilt, nextKeyframe.tilt, factor);
     let targetX = lerp(currentKeyframe.x, nextKeyframe.x, factor);
     let targetY = lerp(currentKeyframe.y, nextKeyframe.y, factor);
     let targetSz = lerp(currentKeyframe.sz, nextKeyframe.sz, factor);
 
+    // Cuando scrollea más allá del hero (hacia stack, servicios, contacto):
+    if (scrollY > vh * 2) {
+      const beyondFactor = clamp((scrollY - vh * 2) / (vh * 1.5), 0, 1);
+      targetX = lerp(targetX, 0.50, beyondFactor);
+      targetY = lerp(targetY, 0.48, beyondFactor);
+      targetSz = 0.28;
+    }
+
     if (isMobile) {
-      if ((index === 0 && factor > 0.4) || index === 1) {
-        targetX = 0.5;
-        targetY = 0.24;
-        targetSz = 0.20;
-      }
+      targetX = 0.5;
+      targetY = 0.26;
+      targetSz = 0.22;
     }
 
     const scale = targetSz * Math.min(width, height);

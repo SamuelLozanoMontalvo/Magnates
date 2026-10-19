@@ -43,6 +43,23 @@
 </head>
 <body>
 
+  <!-- 3D Canvas Background Permanente Global (Siempre detrás sin tapar texto) -->
+  <div class="stage-bg" id="stage">
+    <!-- Glow Arc Graphic -->
+    <svg class="arc" viewBox="0 0 800 300" aria-hidden="true">
+      <defs>
+        <filter id="bl">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+      </defs>
+      <path d="M0 120 C250 150 450 230 800 300" fill="none" stroke="#e3131b" stroke-width="5" filter="url(#bl)" />
+      <path d="M0 120 C250 150 450 230 800 300" fill="none" stroke="#ff5a4a" stroke-width="1.5" />
+    </svg>
+
+    <!-- 3D Canvas -->
+    <canvas id="cv" aria-hidden="true"></canvas>
+  </div>
+
   <!-- Navigation -->
   <nav>
     <a class="logo" href="#">Magnates.</a>
@@ -55,24 +72,8 @@
     </div>
   </nav>
 
-  <!-- Hero Section with 3D Canvas Background & Vertical Flow Screens -->
+  <!-- Hero Section with Vertical Flow Screens -->
   <section id="hero">
-    <!-- 3D Canvas Sticky Background Stage -->
-    <div class="stage-bg" id="stage">
-      <!-- Glow Arc Graphic -->
-      <svg class="arc" viewBox="0 0 800 300" aria-hidden="true">
-        <defs>
-          <filter id="bl">
-            <feGaussianBlur stdDeviation="6" />
-          </filter>
-        </defs>
-        <path d="M0 120 C250 150 450 230 800 300" fill="none" stroke="#e3131b" stroke-width="5" filter="url(#bl)" />
-        <path d="M0 120 C250 150 450 230 800 300" fill="none" stroke="#ff5a4a" stroke-width="1.5" />
-      </svg>
-
-      <!-- 3D Canvas -->
-      <canvas id="cv" aria-hidden="true"></canvas>
-    </div>
 
     <!-- Pantalla 1: INTRO MAGNATES -->
     <div class="hero-screen screen-intro">

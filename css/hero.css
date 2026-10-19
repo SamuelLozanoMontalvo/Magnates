@@ -1,24 +1,20 @@
 /* ==========================================================================
-   HERO & 3D CANVAS STAGE (Flujo Vertical Natural sin zonas negras)
+   HERO & 3D CANVAS BACKGROUND (Permanente en el fondo sin tapar letras)
    ========================================================================== */
-#hero {
-  position: relative;
-  background: var(--ink);
-}
 
-/* El fondo 3D se mantiene como background sticky mientras el contenido se desplaza */
+/* Fondo 3D fijo permanente detrás de todo el contenido */
 .stage-bg {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  z-index: 1;
-  margin-bottom: -300vh; /* Permite que las 3 pantallas de 100vh fluyan por encima */
+  z-index: 0; /* Siempre detrás del texto y componentes */
   pointer-events: none;
 }
 
-canvas {
+canvas#cv {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -30,16 +26,22 @@ canvas {
   left: -10%;
   bottom: -8%;
   width: 80%;
-  opacity: 0.9;
+  opacity: 0.75;
   pointer-events: none;
 }
 
-/* Cada pantalla de contenido fluye verticalmente de forma 100% natural */
+/* Sección Hero que contiene las 3 pantallas secuenciales */
+#hero {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Pantallas verticales secuenciales */
 .hero-screen {
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
-  z-index: 5;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -92,11 +94,11 @@ canvas {
   text-transform: uppercase;
   color: var(--bone);
   border: 1px solid rgba(227, 19, 27, 0.45);
-  background: rgba(227, 19, 27, 0.1);
-  padding: 7px 16px;
-  margin-bottom: 14px;
+  background: rgba(227, 19, 27, 0.15);
+  padding: 8px 18px;
+  margin-bottom: 16px;
   border-radius: 999px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .hero-tag-problem {
@@ -128,22 +130,22 @@ canvas {
 /* Headings */
 .hero-title {
   font-family: var(--disp);
-  font-size: clamp(42px, 7.5vw, 92px);
+  font-size: clamp(44px, 8vw, 96px);
   line-height: 0.95;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   color: #ffffff;
-  text-shadow: 0 0 35px rgba(227, 19, 27, 0.55), 0 0 70px rgba(227, 19, 27, 0.2);
+  text-shadow: 0 0 35px rgba(227, 19, 27, 0.6), 0 0 70px rgba(227, 19, 27, 0.25);
   animation: heroPulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes heroPulse {
   0% {
-    text-shadow: 0 0 25px rgba(227, 19, 27, 0.4), 0 0 50px rgba(227, 19, 27, 0.15);
+    text-shadow: 0 0 25px rgba(227, 19, 27, 0.45), 0 0 50px rgba(227, 19, 27, 0.2);
   }
   100% {
-    text-shadow: 0 0 45px rgba(227, 19, 27, 0.75), 0 0 90px rgba(227, 19, 27, 0.35);
+    text-shadow: 0 0 45px rgba(227, 19, 27, 0.8), 0 0 90px rgba(227, 19, 27, 0.4);
   }
 }
 
@@ -152,7 +154,7 @@ canvas {
   color: var(--bone);
   max-width: 52ch;
   line-height: 1.55;
-  margin: 0 auto 22px;
+  margin: 0 auto 24px;
 }
 
 .hero-problem-title,
@@ -177,7 +179,7 @@ canvas {
   margin: 0 0 20px;
 }
 
-/* Bullet Points (Problem Scene) */
+/* Bullet Points (Problem Scene) con fondo sólido para no transparentar */
 .problem-points {
   display: flex;
   flex-direction: column;
@@ -188,14 +190,14 @@ canvas {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: rgba(15, 15, 15, 0.88);
+  background: #0b0b0b;
   border: 1px solid #282828;
   border-left: 3px solid var(--red);
   padding: 12px 16px;
   font-size: 13.5px;
   line-height: 1.5;
   color: #eeeeee;
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 .point-bullet {
@@ -214,11 +216,11 @@ canvas {
 }
 
 .pillar-item {
-  background: rgba(18, 18, 18, 0.88);
+  background: #0b0b0b;
   border: 1px solid #333333;
   padding: 14px 18px;
   border-radius: 4px;
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   transition: border-color 0.25s, transform 0.25s;
 }
 
@@ -256,7 +258,7 @@ canvas {
 }
 
 .scroll-indicator {
-  margin-top: 24px;
+  margin-top: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -303,11 +305,17 @@ canvas {
   50% { transform: translateY(4px); }
 }
 
+/* Asegurar que las secciones posteriores tengan z-index por encima del canvas */
+section.pg,
+footer {
+  position: relative;
+  z-index: 5;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 860px) {
   .hero-screen {
     padding: 90px 5vw 40px;
-    align-items: flex-end;
   }
 
   .screen-problem,
