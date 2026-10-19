@@ -13,12 +13,12 @@ export function initHero3D() {
   const NUM_SCENES = 4;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // 0: Intro (Centro), 1: Problema (Derecha), 2: Solución (IZQUIERDA - lugar correcto), 3: Fondo
+  // 0: Intro (Centro), 1: Problema (Derecha), 2: Solución (IZQUIERDA - equilibrado con texto a la derecha), 3: Fondo
   const KEYFRAMES = [
-    { sp: 0.3, tilt: 0.35, sz: 0.44, x: 0.50, y: 0.44 },
-    { sp: 1.8, tilt: 0.90, sz: 0.40, x: 0.77, y: 0.50 },
-    { sp: 3.2, tilt: -0.4, sz: 0.40, x: 0.23, y: 0.50 },
-    { sp: 4.5, tilt: 0.20, sz: 0.32, x: 0.50, y: 0.50 }
+    { sp: 0.3, tilt: 0.35, sz: 0.50, x: 0.50, y: 0.44 },
+    { sp: 1.8, tilt: 0.90, sz: 0.48, x: 0.78, y: 0.50 },
+    { sp: 3.2, tilt: -0.4, sz: 0.48, x: 0.22, y: 0.50 },
+    { sp: 4.5, tilt: 0.20, sz: 0.36, x: 0.50, y: 0.50 }
   ];
 
   // 12 Vertices of an Icosahedron based on Golden Ratio PHI
@@ -60,7 +60,7 @@ export function initHero3D() {
   handleResize();
 
   // Math Helper Functions
-  const clamp = (val) => (val < 0 ? 0 : val > 1 ? 1 : val);
+  const clamp = (val, min = 0, max = 1) => (val < min ? min : val > max ? max : val);
   const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   const lerp = (a, b, f) => a + (b - a) * f;
 
@@ -91,22 +91,32 @@ export function initHero3D() {
       const rProb = screenProblem.getBoundingClientRect();
       const rSol = screenSolution.getBoundingClientRect();
 
-      if (rSol.top <= mid) {
-        // En Solución o más abajo hacia stack
-        rawT = 2 + clamp((mid - rSol.top) / vh, 0, 1);
-      } else if (rProb.top <= mid) {
-        // Entre Problema (t=1) y Solución (t=2)
-        rawT = 1 + clamp((mid - rProb.top) / Math.max(1, rSol.top - rProb.top), 0, 1);
+      // Centros de cada pantalla respecto al viewport
+      const c0 = rIntro.top + rIntro.height / 2;
+      const c1 = rProb.top + rProb.height / 2;
+      const c2 = rSol.top + rSol.height / 2;
+
+      if (mid <= c0) {
+        // En Intro (t=0)
+        rawT = 0;
+      } else if (mid <= c1) {
+        // Transición suave de Intro (t=0) a Problema (t=1)
+        const dist = Math.max(1, c1 - c0);
+        rawT = clamp((mid - c0) / dist, 0, 1);
+      } else if (mid <= c2) {
+        // Transición suave de Problema (t=1) a Solución (t=2)
+        const dist = Math.max(1, c2 - c1);
+        rawT = 1 + clamp((mid - c1) / dist, 0, 1);
       } else {
-        // Entre Intro (t=0) y Problema (t=1)
-        rawT = clamp((mid - rIntro.top) / Math.max(1, rProb.top - rIntro.top), 0, 1);
+        // Transición de Solución hacia el fondo general de la página (t=2 a t=3)
+        rawT = 2 + clamp((mid - c2) / (vh * 0.8), 0, 1);
       }
     } else {
       const scrollY = window.scrollY || window.pageYOffset || 0;
       rawT = clamp(scrollY / vh, 0, 3);
     }
 
-    progress += (rawT - progress) * (1 - Math.exp(-deltaTime * 8));
+    progress += (rawT - progress) * (1 - Math.exp(-deltaTime * 9));
 
     const isMobile = width < 860;
     const index = Math.min(Math.floor(progress), 2);
@@ -123,8 +133,8 @@ export function initHero3D() {
 
     if (isMobile) {
       targetX = 0.5;
-      targetY = 0.28;
-      targetSz = 0.28;
+      targetY = 0.25;
+      targetSz = 0.32;
     }
 
     const scale = targetSz * Math.min(width, height);

@@ -77,12 +77,12 @@ canvas#cv {
 }
 
 .screen-problem .hero-content {
-  max-width: 660px;
+  max-width: 680px;
   text-align: left;
 }
 
 .screen-solution .hero-content {
-  max-width: 660px;
+  max-width: 680px;
   text-align: left;
 }
 
@@ -103,27 +103,27 @@ canvas#cv {
 
 .hero-tag-problem {
   display: inline-block;
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 13px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: #ff5a4a;
   background: rgba(255, 90, 74, 0.18);
   border-left: 3px solid var(--red);
-  padding: 7px 16px;
-  margin-bottom: 16px;
+  padding: 8px 18px;
+  margin-bottom: 18px;
   font-weight: 700;
 }
 
 .hero-tag-solution {
   display: inline-block;
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 13px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: #ffffff;
   background: rgba(227, 19, 27, 0.25);
   border-left: 3px solid var(--red);
-  padding: 7px 16px;
-  margin-bottom: 16px;
+  padding: 8px 18px;
+  margin-bottom: 18px;
   font-weight: 700;
 }
 
@@ -160,11 +160,12 @@ canvas#cv {
 .hero-problem-title,
 .hero-solution-title {
   font-family: var(--disp);
-  font-size: clamp(38px, 4.6vw, 64px);
-  line-height: 1.05;
+  font-size: clamp(42px, 5.2vw, 74px);
+  line-height: 1.02;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
-  margin: 0 0 18px;
+  margin: 0 0 20px;
 }
 
 .text-red {
@@ -173,37 +174,38 @@ canvas#cv {
 
 .hero-problem-desc,
 .hero-solution-desc {
-  font-size: clamp(16px, 1.3vw, 19px);
-  line-height: 1.65;
+  font-size: clamp(17px, 1.35vw, 21px);
+  line-height: 1.62;
   color: #dddddd;
-  margin: 0 0 26px;
+  margin: 0 0 28px;
 }
 
 /* Bullet Points (Problem Scene) Más Grandes y Legibles */
 .problem-points {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .point-item {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  background: #0c0c0c;
+  gap: 16px;
+  background: rgba(14, 14, 14, 0.88);
+  backdrop-filter: blur(8px);
   border: 1px solid #2d2d2d;
   border-left: 4px solid var(--red);
-  padding: 16px 20px;
-  font-size: 15.5px;
-  line-height: 1.5;
-  color: #eeeeee;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  padding: 18px 24px;
+  font-size: 16.5px;
+  line-height: 1.52;
+  color: #f2f2f2;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .point-bullet {
   color: var(--red);
   font-weight: 900;
-  font-size: 16px;
+  font-size: 17px;
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -212,15 +214,16 @@ canvas#cv {
 .solution-pillars {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .pillar-item {
-  background: #0c0c0c;
+  background: rgba(14, 14, 14, 0.88);
+  backdrop-filter: blur(8px);
   border: 1px solid #333333;
-  padding: 18px 22px;
+  padding: 20px 24px;
   border-radius: 4px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   transition: border-color 0.25s, transform 0.25s;
 }
 
@@ -231,14 +234,14 @@ canvas#cv {
 
 .pillar-item b {
   display: block;
-  font-size: 16px;
+  font-size: 17.5px;
   color: #ffffff;
   letter-spacing: 0.04em;
   margin-bottom: 6px;
 }
 
 .pillar-item p {
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--bone);
   margin: 0;
