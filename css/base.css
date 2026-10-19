@@ -46,6 +46,7 @@ section.pg {
 
 h2.d {
   font-size: clamp(40px, 8vw, 110px);
+  margin-bottom: clamp(26px, 3.6vw, 48px);
 }
 
 /* Buttons */
