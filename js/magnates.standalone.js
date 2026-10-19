@@ -139,11 +139,45 @@
       fm.addEventListener("submit", (e) => {
         e.preventDefault();
         const submitBtn = fm.querySelector(".send");
-        if (submitBtn) {
-          submitBtn.innerHTML = "¡Recibido! Te contactamos pronto ✓";
-          submitBtn.style.backgroundColor = "#ffffff";
-          submitBtn.style.color = "#111111";
+        if (!submitBtn) return;
+
+        // Recoger servicios seleccionados
+        const selected = Array.from(ch ? ch.querySelectorAll("button.on") : []).map((b) => b.textContent.trim());
+        const serviciosInput = document.getElementById("servicios_input");
+        if (serviciosInput) {
+          serviciosInput.value = selected.length ? selected.join(", ") : "Estrategia 360 general";
         }
+
+        const originalBtnHtml = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "Enviando propuesta...";
+        submitBtn.style.opacity = "0.75";
+
+        fetch("https://formsubmit.co/ajax/samylozano00@gmail.com", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json"
+          },
+          body: new FormData(fm)
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Network response was not ok");
+            return res.json();
+          })
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.innerHTML = "¡Propuesta enviada con éxito! Te contactamos pronto ✓";
+            submitBtn.style.backgroundColor = "#25D366";
+            submitBtn.style.borderColor = "#25D366";
+            submitBtn.style.color = "#ffffff";
+            fm.reset();
+            if (ch) ch.querySelectorAll("button.on").forEach((b) => b.classList.remove("on"));
+          })
+          .catch(() => {
+            // Si por alguna razón falla AJAX (bloqueador de anuncios), enviar mediante formulario tradicional
+            fm.submit();
+          });
       });
     }
 

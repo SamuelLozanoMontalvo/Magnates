@@ -68,7 +68,7 @@
       <a href="#servicios">Servicios</a>
       <a href="#stack">Tecnología</a>
       <a href="#cartagena">Cartagena</a>
-      <a class="cta" href="#contacto">Cotizar <span>↗</span></a>
+      <a class="cta" href="https://wa.me/573126414593?text=%C2%A1Hola%20Magnates!%20Estoy%20interesado%20en%20sus%20servicios%20de%20marketing%20digital%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer">Cotizar <span>↗</span></a>
     </div>
   </nav>
 
@@ -84,7 +84,7 @@
           Hacemos que tu marca lidere en redes, posicione en Google y venda más todos los días.
         </p>
         <div class="hero-actions">
-          <a class="btn" href="#contacto">Cotizar proyecto ↗</a>
+          <a class="btn" href="https://wa.me/573126414593?text=%C2%A1Hola%20Magnates!%20Estoy%20interesado%20en%20cotizar%20un%20proyecto%20de%20marketing%20digital%20para%20mi%20marca." target="_blank" rel="noopener noreferrer">Cotizar proyecto ↗</a>
           <a class="btn o" href="#servicios">Ver servicios</a>
         </div>
         <div class="scroll-indicator">
@@ -148,7 +148,7 @@
           </div>
         </div>
         <div class="hero-actions" style="margin-top:24px">
-          <a class="btn" href="#contacto">Hablemos de tu marca ↗</a>
+          <a class="btn" href="https://wa.me/573126414593?text=%C2%A1Hola%20Magnates!%20Hablemos%20de%20mi%20marca%2C%20quiero%20hacerla%20crecer%20y%20aumentar%20mis%20ventas." target="_blank" rel="noopener noreferrer">Hablemos de tu marca ↗</a>
           <a class="btn o" href="#cartagena">Mercado de Cartagena</a>
         </div>
       </div>
@@ -303,6 +303,14 @@
         </div>
 
         <div class="contact-channels">
+          <a class="channel-card" href="https://wa.me/573126414593?text=%C2%A1Hola%20Magnates!%20Estoy%20interesado%20en%20sus%20servicios%20de%20marketing%20digital." target="_blank" rel="noopener noreferrer">
+            <span class="channel-badge">WhatsApp Directo</span>
+            <span class="channel-text">+57 312 641 4593 ↗</span>
+          </a>
+          <a class="channel-card" href="mailto:samylozano00@gmail.com">
+            <span class="channel-badge">Correo</span>
+            <span class="channel-text">samylozano00@gmail.com</span>
+          </a>
           <div class="channel-card">
             <span class="channel-badge">Ubicación</span>
             <span class="channel-text">Cartagena de Indias, Bolívar</span>
@@ -317,17 +325,23 @@
       <!-- Columna derecha: Formulario interactivo con borde glow -->
       <div class="contact-form-side rv-in">
         <div class="fw">
-          <form id="fm">
+          <form id="fm" action="https://formsubmit.co/samylozano00@gmail.com" method="POST">
+            <!-- FormSubmit Config -->
+            <input type="hidden" name="_subject" value="Nuevo prospecto desde Magnates Web">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="servicios" id="servicios_input" value="">
+
             <div class="fl">
-              <input id="n" placeholder=" " required>
+              <input id="n" name="nombre" placeholder=" " required>
               <label for="n">Tu nombre</label>
             </div>
             <div class="fl">
-              <input id="e" type="email" placeholder=" " required>
+              <input id="e" name="email" type="email" placeholder=" " required>
               <label for="e">Correo electrónico</label>
             </div>
             <div class="fl">
-              <input id="t" type="tel" placeholder=" ">
+              <input id="t" name="telefono" type="tel" placeholder=" " required>
               <label for="t">WhatsApp / Teléfono</label>
             </div>
             <div>
@@ -335,7 +349,7 @@
               <div class="ch" id="ch"></div>
             </div>
             <div class="fl">
-              <textarea id="m" rows="4" placeholder=" "></textarea>
+              <textarea id="m" name="mensaje" rows="4" placeholder=" "></textarea>
               <label for="m">Cuéntanos tu proyecto</label>
             </div>
             <button class="btn send" type="submit">
