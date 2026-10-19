@@ -169,18 +169,18 @@
     const ctx = canvas.getContext("2d");
     const items = Array.from(stage.querySelectorAll("[data-sc]")).map((el) => ({
       el,
-      scene: Number(el.dataset.sc),
-      delay: Number(el.dataset.d) || 0
+      scene: Number(el.dataset.sc)
     }));
 
     const NUM_SCENES = 4;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // Escenas: 0: Centro (Magnates), 1: Derecha (Problema a la izq), 2: Izquierda (Solución a la der), 3: Centro (Cierre)
     const KEYFRAMES = [
-      { sp: 0.3, tilt: 0.35, sz: 0.34, x: 0.5, y: 0.4 },
-      { sp: 1.6, tilt: 1.1, sz: 0.22, x: 0.78, y: 0.5 },
-      { sp: 2.8, tilt: -0.3, sz: 0.3, x: 0.74, y: 0.62 },
-      { sp: 4.2, tilt: 0.2, sz: 0.5, x: 0.5, y: 0.5 }
+      { sp: 0.3, tilt: 0.35, sz: 0.34, x: 0.50, y: 0.44 },
+      { sp: 1.6, tilt: 0.90, sz: 0.25, x: 0.77, y: 0.50 },
+      { sp: 2.8, tilt: -0.4, sz: 0.25, x: 0.23, y: 0.50 },
+      { sp: 4.2, tilt: 0.20, sz: 0.40, x: 0.50, y: 0.44 }
     ];
 
     const PHI = 1.618;
@@ -234,22 +234,36 @@
       if (!prefersReducedMotion) timer += deltaTime;
 
       const heroRect = hero.getBoundingClientRect();
-      const rawProgress = clamp(-heroRect.top / (heroRect.height - height));
+      const scrollableDist = Math.max(1, heroRect.height - height);
+      const rawProgress = clamp(-heroRect.top / scrollableDist);
       progress += (rawProgress - progress) * (1 - Math.exp(-deltaTime * 9));
 
+      const isMobile = width < 860;
       const t = progress * (NUM_SCENES - 1);
       const index = Math.min(Math.floor(t), NUM_SCENES - 2);
-      const easeProgress = index + easeInOutCubic(clamp((t - index - 0.17) / 0.66));
-      const factor = easeProgress - index;
+      const localProgress = clamp(t - index);
+      const factor = easeInOutCubic(localProgress);
 
       const currentKeyframe = KEYFRAMES[index];
       const nextKeyframe = KEYFRAMES[index + 1];
 
       const spin = lerp(currentKeyframe.sp, nextKeyframe.sp, factor) + timer * 0.25;
       const tilt = lerp(currentKeyframe.tilt, nextKeyframe.tilt, factor);
-      const scale = lerp(currentKeyframe.sz, nextKeyframe.sz, factor) * Math.min(width, height);
-      const centerX = lerp(currentKeyframe.x, nextKeyframe.x, factor) * width;
-      const centerY = lerp(currentKeyframe.y, nextKeyframe.y, factor) * height;
+      let targetX = lerp(currentKeyframe.x, nextKeyframe.x, factor);
+      let targetY = lerp(currentKeyframe.y, nextKeyframe.y, factor);
+      let targetSz = lerp(currentKeyframe.sz, nextKeyframe.sz, factor);
+
+      if (isMobile) {
+        if ((index === 0 && factor > 0.4) || index === 1 || (index === 2 && factor < 0.6)) {
+          targetX = 0.5;
+          targetY = 0.24;
+          targetSz = 0.20;
+        }
+      }
+
+      const scale = targetSz * Math.min(width, height);
+      const centerX = targetX * width;
+      const centerY = targetY * height;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
@@ -305,19 +319,25 @@
         ctx.fill();
       });
 
-      items.forEach(({ el, scene, delay }) => {
-        const diff = easeProgress - scene;
-        const lag = diff < 0 ? delay : 1 - delay;
-        const visibilityFactor = clamp((0.6 - Math.abs(diff) - lag * 0.2) / 0.25);
+      // Animate scene visibility based on current progress t
+      items.forEach(({ el, scene }) => {
+        const diff = t - scene;
+        // Visible when within 0.7 units of scene
+        const visibilityFactor = clamp(1 - (Math.abs(diff) - 0.22) / 0.45);
         const style = el.style;
 
-        style.visibility = visibilityFactor <= 0 ? "hidden" : "";
-        style.opacity = visibilityFactor;
-
-        if (!prefersReducedMotion) {
-          const direction = diff < 0 ? 1 : -1;
-          style.transform = `translateY(${((1 - visibilityFactor) * 34 * direction).toFixed(1)}px)`;
-          style.filter = visibilityFactor > 0.99 ? "" : `blur(${((1 - visibilityFactor) * 8).toFixed(1)}px)`;
+        if (visibilityFactor <= 0.01) {
+          style.visibility = "hidden";
+          style.opacity = "0";
+          style.pointerEvents = "none";
+        } else {
+          style.visibility = "visible";
+          style.opacity = visibilityFactor.toFixed(3);
+          style.pointerEvents = visibilityFactor > 0.6 ? "auto" : "none";
+          if (!prefersReducedMotion) {
+            const translateY = ((1 - visibilityFactor) * 26 * (diff < 0 ? 1 : -1)).toFixed(1);
+            style.transform = `translateY(${translateY}px)`;
+          }
         }
       });
     }

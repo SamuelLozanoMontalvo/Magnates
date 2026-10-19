@@ -223,13 +223,15 @@
   stroke-linejoin: round;
 }
 
-.card:hover .ic {
+.card:hover .ic,
+.mk div:hover .ic {
   transform: rotate(-8deg) scale(1.12);
   background: #ffffff;
   box-shadow: 4px 4px 0 #000000;
 }
 
-.card:hover .ic svg {
+.card:hover .ic svg,
+.mk div:hover .ic svg {
   stroke: var(--red);
   animation: pop 0.6s;
 }
