@@ -1,0 +1,364 @@
+/* ==========================================================================
+   COMPONENTS: MARQUEE, CARDS, STATS & SECTIONS
+   ========================================================================== */
+
+/* 1. Technology Marquee */
+.mq {
+  overflow: hidden;
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  user-select: none;
+}
+
+.mq .tr {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  animation: mq 40s linear infinite;
+}
+
+.mq.rv .tr {
+  animation-direction: reverse;
+  animation-duration: 50s;
+}
+
+.mq:hover .tr {
+  animation-play-state: paused;
+}
+
+@keyframes mq {
+  to {
+    transform: translateX(calc(-100% - 10px));
+  }
+}
+
+.b {
+  padding: 12px 22px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* 2. Intro Section & Keywords */
+.intro {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+.intro p {
+  line-height: 1.7;
+  font-size: 17px;
+  margin: 0 0 16px;
+}
+
+.intro strong {
+  color: #ffffff;
+}
+
+.kw {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.kw span {
+  border: 1px solid #444;
+  padding: 7px 14px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s, border-color 0.3s;
+  cursor: default;
+}
+
+.kw span:hover {
+  background: var(--red);
+  color: #ffffff;
+  border-color: var(--red);
+  transform: translateY(-3px) rotate(-2deg);
+}
+
+/* 3. Stats Grid */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stat {
+  border: 2px solid #333;
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  background: #080808;
+}
+
+.stat b {
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: 48px;
+  color: #ffffff;
+  display: block;
+  line-height: 1;
+}
+
+.stat small {
+  letter-spacing: 0.15em;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  inset: auto -20% -60% -20%;
+  height: 80%;
+  background: radial-gradient(closest-side, var(--red-glow), transparent);
+  animation: fl 5s ease-in-out infinite;
+}
+
+@keyframes fl {
+  50% {
+    transform: translateY(-14px) scale(1.15);
+  }
+}
+
+/* 4. Services Grid & Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0;
+  margin-top: 40px;
+  border: 2px solid #333;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-card);
+  padding: 28px;
+  border: 1px solid #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 0%), var(--red-glow), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  background: var(--red);
+  color: #ffffff;
+}
+
+.card > * {
+  position: relative;
+}
+
+.card h3 {
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: 26px;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.card span {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--red);
+}
+
+.card:hover span {
+  color: #ffffff;
+}
+
+.ic {
+  width: 54px;
+  height: 54px;
+  border: 2px solid var(--red);
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  box-shadow: 4px 4px 0 var(--red);
+  transition: transform 0.35s, background-color 0.35s, box-shadow 0.35s;
+}
+
+.ic svg {
+  width: 28px;
+  height: 28px;
+  stroke: #ffffff;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card:hover .ic {
+  transform: rotate(-8deg) scale(1.12);
+  background: #ffffff;
+  box-shadow: 4px 4px 0 #000000;
+}
+
+.card:hover .ic svg {
+  stroke: var(--red);
+  animation: pop 0.6s;
+}
+
+@keyframes pop {
+  50% {
+    transform: scale(1.3) rotate(10deg);
+  }
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  font-size: 13px;
+}
+
+.card li {
+  padding: 5px 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.card li::before {
+  content: "✦ ";
+  color: var(--red);
+  transition: color 0.3s;
+}
+
+.card:hover li::before {
+  color: #ffffff;
+}
+
+/* 5. Process Steps */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 50px;
+  counter-reset: s;
+}
+
+.step {
+  border-top: 3px solid var(--red);
+  padding-top: 14px;
+  counter-increment: s;
+}
+
+.step::before {
+  content: "0" counter(s);
+  font-family: var(--disp);
+  font-size: 34px;
+  color: #ffffff;
+  display: block;
+}
+
+.step p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 6px 0 0;
+}
+
+/* 6. Market Verticals (Cartagena Niches) */
+.mk {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.mk div {
+  border: 2px solid #333;
+  padding: 20px;
+  transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+  background: linear-gradient(#0a0a0a, #0a0a0a) padding-box;
+}
+
+.mk div:hover {
+  border-color: var(--red);
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 8px 8px 0 var(--red);
+}
+
+.mk i {
+  font-style: normal;
+  font-size: 30px;
+  display: block;
+  animation: bob 3s ease-in-out infinite;
+}
+
+.mk div:nth-child(even) i {
+  animation-delay: -1.5s;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.mk h4 {
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: 20px;
+  margin: 10px 0 6px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.mk p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 7. Pulsing Location Pin */
+.pin {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: var(--red);
+  border-radius: 50%;
+  margin-right: 10px;
+  box-shadow: 0 0 0 0 rgba(227, 19, 27, 0.7);
+  animation: pu 1.8s infinite;
+  vertical-align: middle;
+}
+
+@keyframes pu {
+  to {
+    box-shadow: 0 0 0 22px rgba(227, 19, 27, 0);
+  }
+}

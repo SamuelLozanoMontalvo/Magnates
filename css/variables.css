@@ -1,0 +1,27 @@
+/* ==========================================================================
+   DESIGN TOKENS & CSS VARIABLES
+   ========================================================================== */
+:root {
+  color-scheme: dark;
+
+  /* Color Palette */
+  --ink: #050505;
+  --ink-card: #0a0a0a;
+  --bone: #b6b095;
+  --red: #e3131b;
+  --red-glow: rgba(227, 19, 27, 0.35);
+  --white: #ffffff;
+  --gray-light: #dddddd;
+  --gray-border: #333333;
+  --gray-input-border: #444444;
+
+  /* Typography */
+  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --disp: "Federant", "Iowan Old Style", Georgia, serif;
+  --logo-font: "Mr De Haviland", cursive;
+
+  /* Safe Area Spacing */
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

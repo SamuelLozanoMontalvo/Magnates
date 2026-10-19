@@ -1,0 +1,95 @@
+/* ==========================================================================
+   HERO & 3D CANVAS STAGE
+   ========================================================================== */
+#hero {
+  position: relative;
+  height: 400vh;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  container-type: size;
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.arc {
+  position: absolute;
+  left: -10%;
+  bottom: -8%;
+  width: 80%;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.sc {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+[data-sc] {
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Scene Typography & Layouts */
+.big {
+  font-size: min(17cqw, 26cqh);
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 62%;
+  margin-top: -0.45em;
+}
+
+.tl {
+  position: absolute;
+  left: 5cqw;
+  top: 16cqh;
+  max-width: 34ch;
+}
+
+.br {
+  position: absolute;
+  right: 5cqw;
+  bottom: 6cqh;
+  text-align: right;
+}
+
+.bl {
+  position: absolute;
+  left: 5cqw;
+  bottom: 6cqh;
+}
+
+.list {
+  position: absolute;
+  left: 6cqw;
+  top: 22cqh;
+  font-size: min(8cqw, 10cqh);
+}
+
+.list div {
+  display: block;
+}
+
+.list b {
+  color: var(--red);
+  font-weight: 400;
+  font-size: 0.3em;
+  margin-right: 0.6em;
+  vertical-align: top;
+  font-family: var(--sans);
+}

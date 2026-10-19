@@ -1,0 +1,132 @@
+/* ==========================================================================
+   CONTACT FORM & INTERACTION
+   ========================================================================== */
+.fw {
+  position: relative;
+  max-width: 760px;
+  margin-top: 36px;
+  padding: 3px;
+  background: linear-gradient(120deg, #e3131b, #ff7a45, #ffffff, #e3131b);
+  background-size: 300% 300%;
+  animation: gb 6s linear infinite;
+  box-shadow: 12px 12px 0 rgba(227, 19, 27, 0.35);
+}
+
+@keyframes gb {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+.fw form {
+  display: grid;
+  max-width: none;
+  margin: 0;
+  background: #080808;
+  padding: clamp(20px, 4vw, 40px);
+  gap: 22px;
+}
+
+/* Floating Label Inputs */
+.fl {
+  position: relative;
+}
+
+.fl input,
+.fl textarea {
+  width: 100%;
+  padding: 20px 14px 8px;
+  background: #111111;
+  border: 2px solid var(--gray-input-border);
+  color: #eeeeee;
+  font: inherit;
+  transition: border-color 0.25s;
+}
+
+.fl input:focus,
+.fl textarea:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+.fl label {
+  position: absolute;
+  left: 14px;
+  top: 16px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: top 0.25s, font-size 0.25s, color 0.25s;
+  color: #888888;
+}
+
+.fl input:focus + label,
+.fl input:not(:placeholder-shown) + label,
+.fl textarea:focus + label,
+.fl textarea:not(:placeholder-shown) + label {
+  top: 5px;
+  font-size: 10px;
+  color: var(--red);
+}
+
+/* Tag Choice Buttons */
+.ch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ch button {
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  background: none;
+  color: var(--bone);
+  border: 2px solid var(--gray-input-border);
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.ch button:hover {
+  border-color: var(--red);
+}
+
+.ch button.on {
+  background: var(--red);
+  border-color: var(--red);
+  color: #ffffff;
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 #ffffff;
+}
+
+/* Submit Button */
+.send {
+  width: 100%;
+  font-size: 15px;
+  padding: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--red);
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 6px 6px 0 #ffffff;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.2s, transform 0.2s;
+}
+
+.send:hover {
+  box-shadow: 2px 2px 0 #ffffff;
+}
+
+.send span {
+  transition: transform 0.3s;
+}
+
+.send:hover span {
+  transform: translateX(8px) rotate(-45deg);
+}

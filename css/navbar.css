@@ -1,0 +1,62 @@
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+nav {
+  position: fixed;
+  z-index: 20;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(14px, 3vw, 40px);
+}
+
+.logo {
+  font-family: var(--logo-font);
+  font-size: 44px;
+  color: var(--white);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 99px;
+  background: rgba(20, 10, 10, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pill a {
+  color: var(--gray-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 99px;
+  transition: background 0.3s;
+}
+
+.pill a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pill a.cta {
+  background: var(--white);
+  color: #111;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+@media (max-width: 760px) {
+  .pill a:not(.cta) {
+    display: none;
+  }
+}

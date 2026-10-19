@@ -1,0 +1,186 @@
+/**
+ * Hero 3D Canvas: Scroll-driven icosahedron wireframe animation
+ */
+
+export function initHero3D() {
+  const hero = document.getElementById("hero");
+  const stage = document.getElementById("stage");
+  const canvas = document.getElementById("cv");
+
+  if (!hero || !stage || !canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  const items = Array.from(stage.querySelectorAll("[data-sc]")).map((el) => ({
+    el,
+    scene: Number(el.dataset.sc),
+    delay: Number(el.dataset.d) || 0
+  }));
+
+  const NUM_SCENES = 4;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Keyframes for each scroll section: rotation speed, tilt, scale size, center X, center Y
+  const KEYFRAMES = [
+    { sp: 0.3, tilt: 0.35, sz: 0.34, x: 0.5, y: 0.4 },
+    { sp: 1.6, tilt: 1.1, sz: 0.22, x: 0.78, y: 0.5 },
+    { sp: 2.8, tilt: -0.3, sz: 0.3, x: 0.74, y: 0.62 },
+    { sp: 4.2, tilt: 0.2, sz: 0.5, x: 0.5, y: 0.5 }
+  ];
+
+  // 12 Vertices of an Icosahedron based on Golden Ratio PHI
+  const PHI = 1.618;
+  const VERTICES = [
+    [0, 1, PHI], [0, -1, PHI], [0, 1, -PHI], [0, -1, -PHI],
+    [1, PHI, 0], [-1, PHI, 0], [1, -PHI, 0], [-1, -PHI, 0],
+    [PHI, 0, 1], [-PHI, 0, 1], [PHI, 0, -1], [-PHI, 0, -1]
+  ];
+
+  // Calculate 30 Edges between vertices of distance ≈ 2
+  const EDGES = [];
+  for (let i = 0; i < 12; i++) {
+    for (let j = i + 1; j < 12; j++) {
+      const dist = Math.hypot(
+        VERTICES[i][0] - VERTICES[j][0],
+        VERTICES[i][1] - VERTICES[j][1],
+        VERTICES[i][2] - VERTICES[j][2]
+      );
+      if (Math.abs(dist - 2) < 0.05) {
+        EDGES.push([i, j]);
+      }
+    }
+  }
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+
+  function handleResize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = stage.clientWidth;
+    height = stage.clientHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+  }
+
+  window.addEventListener("resize", handleResize);
+  handleResize();
+
+  // Math Helper Functions
+  const clamp = (val) => (val < 0 ? 0 : val > 1 ? 1 : val);
+  const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const lerp = (a, b, f) => a + (b - a) * f;
+
+  let progress = 0;
+  let timer = 0;
+  let lastTime = performance.now();
+
+  function render(currentTime) {
+    requestAnimationFrame(render);
+
+    const deltaTime = Math.min(0.05, (currentTime - lastTime) / 1000);
+    lastTime = currentTime;
+
+    if (!prefersReducedMotion) {
+      timer += deltaTime;
+    }
+
+    // Calculate scroll progress through hero section
+    const heroRect = hero.getBoundingClientRect();
+    const rawProgress = clamp(-heroRect.top / (heroRect.height - height));
+    progress += (rawProgress - progress) * (1 - Math.exp(-deltaTime * 9));
+
+    // Interpolate keyframes based on progress
+    const t = progress * (NUM_SCENES - 1);
+    const index = Math.min(Math.floor(t), NUM_SCENES - 2);
+    const easeProgress = index + easeInOutCubic(clamp((t - index - 0.17) / 0.66));
+    const factor = easeProgress - index;
+
+    const currentKeyframe = KEYFRAMES[index];
+    const nextKeyframe = KEYFRAMES[index + 1];
+
+    const spin = lerp(currentKeyframe.sp, nextKeyframe.sp, factor) + timer * 0.25;
+    const tilt = lerp(currentKeyframe.tilt, nextKeyframe.tilt, factor);
+    const scale = lerp(currentKeyframe.sz, nextKeyframe.sz, factor) * Math.min(width, height);
+    const centerX = lerp(currentKeyframe.x, nextKeyframe.x, factor) * width;
+    const centerY = lerp(currentKeyframe.y, nextKeyframe.y, factor) * height;
+
+    // Reset transform & clear
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    // Dynamic radial background glow behind the 3D shape
+    const radialGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, scale * 1.8);
+    radialGlow.addColorStop(0, "rgba(227, 19, 27, 0.28)");
+    radialGlow.addColorStop(1, "rgba(227, 19, 27, 0)");
+    ctx.fillStyle = radialGlow;
+    ctx.fillRect(0, 0, width, height);
+
+    // 3D Rotation Matrix Trigonometry
+    const cosSpin = Math.cos(spin);
+    const sinSpin = Math.sin(spin);
+    const cosTilt = Math.cos(tilt);
+    const sinTilt = Math.sin(tilt);
+
+    // Project 3D vertices to 2D canvas coordinates
+    const projected = VERTICES.map((vertex) => {
+      const xRotated = vertex[0] * cosSpin + vertex[2] * sinSpin;
+      let zRotated = -vertex[0] * sinSpin + vertex[2] * cosSpin;
+      const yRotated = vertex[1] * cosTilt - zRotated * sinTilt;
+      zRotated = vertex[1] * sinTilt + zRotated * cosTilt;
+
+      const perspective = 1 / (1 + zRotated * 0.12);
+      return [
+        centerX + xRotated * scale * 0.5 * perspective,
+        centerY - yRotated * scale * 0.5 * perspective,
+        zRotated
+      ];
+    });
+
+    // Draw Edges (Lines) with depth lighting
+    ctx.lineCap = "round";
+    EDGES.forEach(([i1, i2]) => {
+      const p1 = projected[i1];
+      const p2 = projected[i2];
+      const avgDepth = (p1[2] + p2[2]) / 2;
+      const isFront = avgDepth < 0;
+
+      ctx.strokeStyle = `rgba(${isFront ? 255 : 200}, ${isFront ? 70 : 20}, 30, ${isFront ? 0.95 : 0.45})`;
+      ctx.shadowColor = "#e3131b";
+      ctx.shadowBlur = isFront ? 14 : 0;
+      ctx.lineWidth = isFront ? 2.2 : 1.2;
+
+      ctx.beginPath();
+      ctx.moveTo(p1[0], p1[1]);
+      ctx.lineTo(p2[0], p2[1]);
+      ctx.stroke();
+    });
+
+    // Draw Vertices (Points)
+    projected.forEach(([px, py]) => {
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "#b6b095";
+      ctx.beginPath();
+      ctx.arc(px, py, 2.4, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Animate HTML slide text elements corresponding to scene progress
+    items.forEach(({ el, scene, delay }) => {
+      const diff = easeProgress - scene;
+      const lag = diff < 0 ? delay : 1 - delay;
+      const visibilityFactor = clamp((0.6 - Math.abs(diff) - lag * 0.2) / 0.25);
+      const style = el.style;
+
+      style.visibility = visibilityFactor <= 0 ? "hidden" : "";
+      style.opacity = visibilityFactor;
+
+      if (!prefersReducedMotion) {
+        const direction = diff < 0 ? 1 : -1;
+        style.transform = `translateY(${((1 - visibilityFactor) * 34 * direction).toFixed(1)}px)`;
+        style.filter = visibilityFactor > 0.99 ? "" : `blur(${((1 - visibilityFactor) * 8).toFixed(1)}px)`;
+      }
+    });
+  }
+
+  requestAnimationFrame(render);
+}
