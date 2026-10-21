@@ -34,8 +34,8 @@ export const SERVICES = [
   {
     iconKey: "target",
     title: "Meta Ads",
-    description: "Campañas en Facebook e Instagram con segmentación local y medición de ventas.",
-    features: ["Segmentación por zona", "Creativos y copys", "Remarketing y pixel"]
+    description: "Campañas en Facebook e Instagram con segmentación en Cartagena, Colombia y mercados internacionales.",
+    features: ["Segmentación local y global", "Creativos y copys de alto impacto", "Remarketing y pixel"]
   },
   {
     iconKey: "pen",
@@ -58,8 +58,8 @@ export const SERVICES = [
   {
     iconKey: "search",
     title: "SEO & Analítica",
-    description: "Search Console, Analytics y Business Profile para que te encuentren en Cartagena.",
-    features: ["SEO local", "Google Maps", "Reportes mensuales"]
+    description: "Search Console, Analytics y posicionamiento para que te encuentren en Cartagena, Colombia y el mundo.",
+    features: ["SEO local Cartagena", "SEO nacional & Google Maps", "Reportes mensuales"]
   },
   {
     iconKey: "mail",
