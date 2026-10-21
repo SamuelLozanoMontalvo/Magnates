@@ -197,7 +197,7 @@
   text-transform: uppercase;
   padding: 9px 15px;
   background: none;
-  color: var(--bone);
+  color: #ffffff;
   border: 2px solid var(--gray-input-border);
   cursor: pointer;
   transition: border-color 0.25s, background-color 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
