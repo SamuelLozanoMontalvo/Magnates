@@ -197,6 +197,8 @@
   gap: 32px;
   align-items: center;
   transition: border-color 0.25s;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 @media (max-width: 920px) {

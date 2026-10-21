@@ -2,10 +2,10 @@
    MAGNATES MAIN STYLESHEET
    ========================================================================== */
 
-@import url("./variables.css");
-@import url("./base.css");
-@import url("./navbar.css");
-@import url("./hero.css");
-@import url("./components.css");
-@import url("./contact.css");
-@import url("./footer.css");
+@import url("./variables.css?v=2.4");
+@import url("./base.css?v=2.4");
+@import url("./navbar.css?v=2.4");
+@import url("./hero.css?v=2.4");
+@import url("./components.css?v=2.4");
+@import url("./contact.css?v=2.4");
+@import url("./footer.css?v=2.4");
