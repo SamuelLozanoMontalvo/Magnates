@@ -181,7 +181,7 @@ canvas#cv {
 
 .hero-problem-desc,
 .hero-solution-desc {
-  font-size: clamp(18.5px, 1.55vw, 23px);
+  font-size: clamp(17px, 1.3vw, 19.5px);
   line-height: 1.68;
   color: #dddddd;
   margin: 0 0 28px;

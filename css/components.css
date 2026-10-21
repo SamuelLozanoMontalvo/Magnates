@@ -59,9 +59,9 @@
 }
 
 .intro p {
-  line-height: 1.7;
-  font-size: clamp(21px, 1.7vw, 26.5px);
-  color: #eeeeee;
+  line-height: 1.68;
+  font-size: clamp(17px, 1.3vw, 19.5px);
+  color: #dddddd;
   margin: 0 0 22px;
 }
 
@@ -94,13 +94,6 @@
 }
 
 /* 3. Stats & Value Grid */
-.stats-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
 .stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -189,18 +182,32 @@
   pointer-events: none;
 }
 
-/* Stat Highlight Banner */
+/* Stat Highlight Banner - Full Width across Section */
 .stat-banner {
-  background: #0d0d0d;
-  border: 2px solid #2e2e2e;
+  margin-top: clamp(32px, 4vw, 50px);
+  width: 100%;
+  box-sizing: border-box;
+  background: #0b0b0b;
+  border: 2px solid #282828;
   border-left: 5px solid var(--red);
-  padding: 24px 26px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: clamp(26px, 3.5vw, 40px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: center;
   transition: border-color 0.25s;
 }
 
+@media (max-width: 920px) {
+  .stat-banner {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
 .stat-banner:hover {
-  border-color: #444;
+  border-color: #3e3e3e;
   border-left-color: var(--red);
 }
 
@@ -216,31 +223,41 @@
 
 .stat-banner-title {
   font-family: var(--disp);
-  font-size: clamp(20px, 1.7vw, 24px);
+  font-size: clamp(22px, 2.1vw, 30px);
   color: #ffffff;
-  margin: 0 0 10px;
-  line-height: 1.25;
+  margin: 0 0 12px;
+  line-height: 1.22;
   letter-spacing: 0.02em;
 }
 
 .stat-banner-text {
-  font-size: clamp(14.5px, 1.15vw, 16px);
-  line-height: 1.6;
-  color: #d6d6d6;
-  margin: 0 0 16px;
+  font-size: clamp(17px, 1.3vw, 19.5px);
+  line-height: 1.68;
+  color: #dddddd;
+  margin: 0;
 }
 
 .stat-banner-badges {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #222222;
+  padding: 20px 22px;
+  border-radius: 4px;
+}
+
+@media (max-width: 540px) {
+  .stat-banner-badges {
+    padding: 16px;
+  }
 }
 
 .stat-badge-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13.5px;
+  gap: 10px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
 }
