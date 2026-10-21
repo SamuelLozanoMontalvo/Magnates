@@ -49,6 +49,14 @@ h2.d {
   margin-bottom: clamp(26px, 3.6vw, 48px);
 }
 
+section.pg > p:not(.sm) {
+  font-size: clamp(17.5px, 1.45vw, 21.5px);
+  line-height: 1.68;
+  color: #dddddd;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
 /* Buttons */
 .btn {
   pointer-events: auto;

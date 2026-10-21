@@ -59,9 +59,10 @@
 }
 
 .intro p {
-  line-height: 1.7;
-  font-size: 17px;
-  margin: 0 0 16px;
+  line-height: 1.75;
+  font-size: clamp(18px, 1.4vw, 21.5px);
+  color: #dedede;
+  margin: 0 0 18px;
 }
 
 .intro strong {
@@ -188,13 +189,13 @@
 
 .card p {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  opacity: 0.85;
+  font-size: 15.5px;
+  line-height: 1.58;
+  opacity: 0.92;
 }
 
 .card span {
-  font-size: 12px;
+  font-size: 12.5px;
   letter-spacing: 0.2em;
   color: var(--red);
 }
@@ -246,8 +247,9 @@
 .card ul {
   list-style: none;
   padding: 0;
-  margin: 14px 0 0;
-  font-size: 13px;
+  margin: 16px 0 0;
+  font-size: 14.5px;
+  line-height: 1.5;
 }
 
 .card li {
@@ -289,9 +291,10 @@
 }
 
 .step p {
-  font-size: 13px;
-  line-height: 1.5;
-  margin: 6px 0 0;
+  font-size: 15.5px;
+  line-height: 1.58;
+  color: #d2d2d2;
+  margin: 8px 0 0;
 }
 
 /* 6. Market Verticals (Cartagena Niches) */
@@ -335,7 +338,7 @@
 .mk h4 {
   font-family: var(--disp);
   font-weight: 400;
-  font-size: 20px;
+  font-size: 21px;
   margin: 10px 0 6px;
   text-transform: uppercase;
   color: #ffffff;
@@ -343,8 +346,9 @@
 
 .mk p {
   margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.58;
+  color: #cfcfcf;
 }
 
 /* 7. Pulsing Location Pin */

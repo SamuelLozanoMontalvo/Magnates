@@ -16,9 +16,9 @@
 }
 
 .contact-desc {
-  font-size: 16px;
-  line-height: 1.65;
-  color: #cccccc;
+  font-size: clamp(17.5px, 1.45vw, 21px);
+  line-height: 1.68;
+  color: #d6d6d6;
   margin: 16px 0 32px;
   max-width: 48ch;
 }
@@ -36,7 +36,7 @@
   gap: 16px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid #222222;
-  padding: 16px 20px;
+  padding: 18px 22px;
   transition: border-color 0.25s, transform 0.25s;
 }
 
@@ -47,7 +47,7 @@
 
 .perk-icon {
   color: var(--red);
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1;
   flex-shrink: 0;
   margin-top: 2px;
@@ -55,15 +55,15 @@
 
 .perk b {
   display: block;
-  font-size: 14.5px;
+  font-size: 16.5px;
   color: #ffffff;
   margin-bottom: 4px;
   letter-spacing: 0.02em;
 }
 
 .perk p {
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.55;
   color: var(--bone);
   margin: 0;
 }
@@ -92,7 +92,7 @@
 }
 
 .channel-badge {
-  font-size: 11px;
+  font-size: 11.5px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--red);
@@ -100,9 +100,9 @@
 }
 
 .channel-text {
-  font-size: 13.5px;
+  font-size: 15px;
   color: #ffffff;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Right Column: Interactive Animated Form */
