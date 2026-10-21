@@ -16,9 +16,9 @@
 }
 
 .contact-desc {
-  font-size: clamp(17.5px, 1.45vw, 21px);
-  line-height: 1.68;
-  color: #d6d6d6;
+  font-size: clamp(20.5px, 1.65vw, 25.5px);
+  line-height: 1.65;
+  color: #ededed;
   margin: 16px 0 32px;
   max-width: 48ch;
 }
@@ -47,7 +47,7 @@
 
 .perk-icon {
   color: var(--red);
-  font-size: 19px;
+  font-size: 20px;
   line-height: 1;
   flex-shrink: 0;
   margin-top: 2px;
@@ -55,16 +55,16 @@
 
 .perk b {
   display: block;
-  font-size: 16.5px;
+  font-size: 18px;
   color: #ffffff;
   margin-bottom: 4px;
   letter-spacing: 0.02em;
 }
 
 .perk p {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--bone);
+  font-size: 16px;
+  line-height: 1.58;
+  color: #cfcbba;
   margin: 0;
 }
 

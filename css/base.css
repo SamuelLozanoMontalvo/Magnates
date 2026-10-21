@@ -50,11 +50,11 @@ h2.d {
 }
 
 section.pg > p:not(.sm) {
-  font-size: clamp(17.5px, 1.45vw, 21.5px);
-  line-height: 1.68;
-  color: #dddddd;
+  font-size: clamp(21px, 1.75vw, 27px);
+  line-height: 1.62;
+  color: #f0f0f0;
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 /* Buttons */
