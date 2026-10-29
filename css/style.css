@@ -1,11 +1,13 @@
 /* ==========================================================================
-   MAGNATES MAIN STYLESHEET — LIGHT LUXURY BRANDING
+   MAGNATES MAIN STYLESHEET — EXACT FIGMA REPLICA (5 SCREENS)
    ========================================================================== */
 
-@import url("./variables.css?v=3.5");
-@import url("./base.css?v=3.5");
-@import url("./navbar.css?v=3.5");
-@import url("./hero.css?v=3.5");
-@import url("./components.css?v=3.5");
-@import url("./contact.css?v=3.5");
-@import url("./footer.css?v=3.5");
+@import url("./variables.css?v=4.0");
+@import url("./base.css?v=4.0");
+@import url("./navbar.css?v=4.0");
+@import url("./hero.css?v=4.0");
+@import url("./problem.css?v=4.0");
+@import url("./solution.css?v=4.0");
+@import url("./tech.css?v=4.0");
+@import url("./contact.css?v=4.0");
+@import url("./footer.css?v=4.0");

@@ -1,0 +1,111 @@
+/* ==========================================================================
+   SECTION 2: EL PROBLEMA (FIGMA EXACT REPLICA)
+   ========================================================================== */
+.section-problem {
+  position: relative;
+  z-index: 5;
+  background: #ffffff;
+  padding: clamp(70px, 9vw, 120px) 6vw;
+  box-sizing: border-box;
+}
+
+.prob-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: clamp(40px, 6vw, 70px);
+  column-gap: clamp(30px, 5vw, 60px);
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Top-Left Headline */
+.prob-heading-left {
+  font-family: var(--disp);
+  font-size: clamp(32px, 4.4vw, 56px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #0f172a;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Top-Right Paragraph */
+.prob-desc-top {
+  font-size: clamp(14.5px, 1.15vw, 16.5px);
+  line-height: 1.65;
+  color: #334155;
+  margin: 0;
+  max-width: 520px;
+  justify-self: end;
+}
+
+/* Middle-Left: 3 Stacked Cards */
+.prob-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 520px;
+}
+
+.prob-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border-left: 4px solid #ebb01b;
+  padding: 16px 20px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  border-radius: 2px 6px 6px 2px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prob-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 24px rgba(235, 176, 27, 0.15);
+}
+
+.prob-x {
+  color: #ebb01b;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.prob-card span:last-child {
+  font-size: clamp(13.5px, 1.05vw, 15px);
+  line-height: 1.5;
+  color: #334155;
+}
+
+/* Bottom-Right Headline */
+.prob-heading-right {
+  font-family: var(--disp);
+  font-size: clamp(32px, 4.4vw, 56px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #0f172a;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  justify-self: end;
+  text-align: left;
+}
+
+.hl-gold {
+  color: #ebb01b;
+}
+
+@media (max-width: 860px) {
+  .prob-grid {
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+  }
+  .prob-desc-top,
+  .prob-heading-right {
+    justify-self: start;
+    text-align: left;
+  }
+}

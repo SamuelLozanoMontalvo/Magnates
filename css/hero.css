@@ -42,12 +42,14 @@ canvas#cv {
   z-index: 2;
   width: 100%;
   background: #ffffff;
+  overflow: hidden;
 }
 
 .hero-screen {
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
+  max-height: 1080px;
   display: flex;
   align-items: center;
   box-sizing: border-box;

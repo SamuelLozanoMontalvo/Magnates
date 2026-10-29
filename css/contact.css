@@ -1,265 +1,134 @@
 /* ==========================================================================
-   CONTACT SECTION & FORM LAYOUT — LIGHT LUXURY PALETTE
+   SECTION 5: CONTACTO — "HAGAMOS ALGO GRANDE" (FIGMA EXACT REPLICA)
    ========================================================================== */
-.contact-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 50px;
-  align-items: center;
-  margin-top: 24px;
+.section-contact {
+  position: relative;
+  z-index: 5;
+  background: #ffffff;
+  padding: clamp(70px, 9vw, 120px) 6vw;
+  box-sizing: border-box;
 }
 
-@media (max-width: 900px) {
-  .contact-wrapper {
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+@media (max-width: 880px) {
+  .contact-layout {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 40px;
   }
 }
 
-.contact-info {
+/* Left Column: Heading & Description */
+.contact-left {
   display: flex;
   flex-direction: column;
+}
+
+.contact-title {
+  font-family: var(--disp);
+  font-size: clamp(34px, 4.6vw, 62px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #2251cf;
+  margin: 0 0 20px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .contact-desc {
-  font-size: clamp(18px, 1.4vw, 22px);
+  font-size: clamp(15px, 1.2vw, 17.5px);
   line-height: 1.65;
   color: #334155;
-  margin: 16px 0 32px;
-  max-width: 48ch;
-}
-
-.contact-perks {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 36px;
-}
-
-.perk {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 18px 22px;
-  transition: all 0.25s ease;
-}
-
-.perk:hover {
-  border-color: #2251cf;
-  transform: translateX(4px);
-  box-shadow: 0 4px 16px rgba(34, 81, 207, 0.08);
-}
-
-.perk-icon {
-  color: #f59e0b;
-  font-size: 20px;
-  line-height: 1;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.perk b {
-  display: block;
-  font-size: 16.5px;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 4px;
-}
-
-.perk p {
-  font-size: 14.5px;
-  line-height: 1.5;
-  color: #64748b;
   margin: 0;
+  max-width: 480px;
 }
 
-.direct-channels {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.channel-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
+/* Right Column: Floating Form Card with Yellow Top Border */
+.contact-card {
   background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: all 0.25s ease;
+  border-top: 5px solid #ebb01b;
+  border-radius: 4px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+  padding: clamp(28px, 4vw, 44px);
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-self: end;
 }
 
-.channel-card:hover {
-  border-color: #2251cf;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(34, 81, 207, 0.1);
+@media (max-width: 880px) {
+  .contact-card {
+    justify-self: start;
+    max-width: 100%;
+  }
 }
 
-.channel-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-
-.channel-icon.wa {
-  background: #25d366;
-  color: #ffffff;
-}
-
-.channel-icon.phone {
-  background: #2251cf;
-  color: #ffffff;
-}
-
-.channel-text b {
-  display: block;
-  font-size: 15px;
-  font-weight: 800;
-  color: #0f172a;
-}
-
-.channel-text span {
-  font-size: 13px;
-  color: #64748b;
-}
-
-/* Contact Form */
-.contact-form-box {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 16px;
-  padding: clamp(26px, 3.5vw, 44px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
-}
-
-.form-header {
-  margin-bottom: 24px;
-}
-
-.form-header h3 {
-  font-family: var(--disp);
-  font-size: clamp(20px, 2vw, 26px);
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 8px;
-}
-
-.form-header p {
-  font-size: 14.5px;
-  color: #64748b;
-  margin: 0;
+.f-group {
+  margin-bottom: 20px;
 }
 
 .f-lbl {
   display: block;
-  font-size: 12.5px;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: var(--disp);
+  font-size: 11.5px;
+  font-weight: 800;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2251cf;
+  margin-bottom: 8px;
+}
+
+.f-in {
+  width: 100%;
+  padding: 13px 16px;
+  background: #e2e8f0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 14.5px;
   color: #0f172a;
-  margin: 18px 0 8px;
-}
-
-.f-lbl:first-of-type {
-  margin-top: 0;
-}
-
-/* Choice Buttons */
-.choices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.choices button {
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  color: #334155;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
-.choices button:hover {
-  border-color: #2251cf;
-  color: #2251cf;
-}
-
-.choices button.on {
-  background: #2251cf;
-  border-color: #2251cf;
-  color: #ffffff;
-}
-
-/* Form Inputs */
-.f-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-@media (max-width: 540px) {
-  .f-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-.in, textarea.in {
-  width: 100%;
-  padding: 14px 16px;
-  background: #f8fafc;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 15px;
-  color: #0f172a;
-  outline: none;
-  transition: border-color 0.25s, box-shadow 0.25s;
-}
-
-.in:focus, textarea.in:focus {
-  border-color: #2251cf;
+.f-in:focus {
   background: #ffffff;
+  border-color: #2251cf;
   box-shadow: 0 0 0 3px rgba(34, 81, 207, 0.15);
 }
 
-textarea.in {
-  resize: vertical;
+.f-textarea {
   min-height: 100px;
+  resize: vertical;
 }
 
-/* Submit Button */
-.send {
+.f-submit {
   width: 100%;
-  margin-top: 22px;
-  padding: 16px 28px;
-  background: #f59e0b;
-  color: #0f172a;
+  padding: 16px 24px;
+  background: #ebb01b;
+  color: #1e3a8a;
   border: none;
-  border-radius: 9999px;
+  border-radius: 2px;
   font-family: var(--disp);
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+  box-shadow: 0 4px 16px rgba(235, 176, 27, 0.35);
   transition: all 0.25s ease;
+  margin-top: 6px;
 }
 
-.send:hover {
-  background: #d97706;
+.f-submit:hover {
+  background: #d99f12;
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(245, 158, 11, 0.45);
+  box-shadow: 0 6px 20px rgba(235, 176, 27, 0.45);
 }

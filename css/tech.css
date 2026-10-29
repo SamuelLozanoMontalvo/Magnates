@@ -1,0 +1,79 @@
+/* ==========================================================================
+   SECTION 4: TECH STACK — "LO QUE USAMOS A DIARIO" (FIGMA EXACT REPLICA)
+   ========================================================================== */
+.section-tech {
+  position: relative;
+  z-index: 5;
+  background: #ffffff;
+  padding: clamp(70px, 9vw, 110px) 6vw;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tech-header {
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+
+.tech-title {
+  font-family: var(--disp);
+  font-size: clamp(32px, 4.4vw, 54px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* 2-Row Clean Grid of Logos */
+.tech-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.5vw, 42px);
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 3.2vw, 48px);
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: default;
+}
+
+.tech-item:hover {
+  color: #0f172a;
+  transform: translateY(-2px);
+}
+
+.tech-item svg,
+.tech-item img {
+  height: clamp(26px, 2.8vw, 36px);
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.65;
+  transition: all 0.25s ease;
+}
+
+.tech-item:hover svg,
+.tech-item:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
