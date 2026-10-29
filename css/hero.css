@@ -1,8 +1,8 @@
 /* ==========================================================================
-   HERO & 3D CANVAS BACKGROUND (Permanente en el fondo sin tapar letras)
+   HERO & AMBIENT ATMOSPHERE — EXACT FIGMA REPLICA
    ========================================================================== */
 
-/* Fondo 3D fijo permanente detrás de todo el contenido */
+/* Stage fixed background behind content */
 .stage-bg {
   position: fixed;
   inset: 0;
@@ -10,7 +10,7 @@
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  z-index: 0; /* Siempre detrás del texto y componentes */
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -21,23 +21,29 @@ canvas#cv {
   height: 100%;
 }
 
-.arc {
+/* Ambient Blurred Horizon Banner (Golden & Royal Blue) */
+.ambient-banner {
   position: absolute;
-  left: -10%;
-  bottom: -8%;
-  width: 80%;
-  opacity: 0.75;
+  bottom: -16%;
+  left: -12%;
+  right: -12%;
+  height: 56%;
+  background: linear-gradient(168deg, rgba(234, 179, 8, 0.48) 0%, rgba(245, 158, 11, 0.38) 28%, rgba(34, 81, 207, 0.62) 60%, rgba(29, 78, 216, 0.82) 100%);
+  filter: blur(95px);
+  -webkit-filter: blur(95px);
+  transform: rotate(-5deg);
   pointer-events: none;
+  z-index: 1;
 }
 
-/* Sección Hero que contiene las 3 pantallas secuenciales */
+/* Hero Section with Screens */
 #hero {
   position: relative;
   z-index: 2;
   width: 100%;
+  background: #ffffff;
 }
 
-/* Pantallas verticales secuenciales */
 .hero-screen {
   position: relative;
   min-height: 100vh;
@@ -45,306 +51,191 @@ canvas#cv {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: 100px 7vw 60px;
+  padding: 100px 6vw 60px;
 }
 
 .screen-intro {
   justify-content: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .screen-problem {
   justify-content: flex-start;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .screen-solution {
   justify-content: flex-end;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Contenido dentro de cada pantalla (Más amplio y con presencia) */
 .hero-content {
   position: relative;
+  z-index: 5;
   width: 100%;
   pointer-events: auto;
 }
 
 .screen-intro .hero-content {
-  max-width: 960px;
-  text-align: center;
+  max-width: 1100px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.screen-problem .hero-content {
-  max-width: 680px;
-  text-align: left;
-}
-
+.screen-problem .hero-content,
 .screen-solution .hero-content {
   max-width: 680px;
   text-align: left;
 }
 
-/* Badges & Tags */
-.hero-badge {
-  display: inline-block;
-  font-size: 12.5px;
-  letter-spacing: 0.22em;
+/* Screen 1: Top Tagline */
+.hero-tagline {
+  color: #2251cf;
+  font-family: var(--disp);
+  font-size: clamp(11.5px, 1.25vw, 14px);
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #ffffff;
-  border: 1px solid rgba(227, 19, 27, 0.55);
-  background: rgba(227, 19, 27, 0.22);
-  padding: 8px 22px;
-  margin-bottom: 20px;
-  border-radius: 999px;
-  backdrop-filter: blur(10px);
+  margin-bottom: 24px;
+  line-height: 1.4;
 }
 
-.hero-tag-problem {
-  display: inline-block;
-  font-size: 13px;
-  letter-spacing: 0.24em;
+/* Screen 1: MAGNATES Title Wordmark (Figma Exact) */
+.hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1.1vw, 14px);
+  color: #2251cf;
+  font-family: var(--disp);
+  font-size: clamp(44px, 6.4vw, 92px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin: 0;
   text-transform: uppercase;
-  color: #ff5a4a;
-  background: rgba(255, 90, 74, 0.18);
-  border-left: 3px solid var(--red);
-  padding: 8px 18px;
-  margin-bottom: 18px;
-  font-weight: 700;
 }
 
+.title-char {
+  display: inline-block;
+  line-height: 1;
+}
+
+.title-char-a {
+  height: 0.82em;
+  width: auto;
+  aspect-ratio: 100 / 86;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Screen 1: Subtitle */
+.hero-subtitle {
+  color: #2251cf;
+  font-family: var(--disp);
+  font-size: clamp(12px, 1.25vw, 15px);
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-top: 32px;
+  max-width: 860px;
+  line-height: 1.6;
+}
+
+/* Problem & Solution Typography in Light Mode */
+.hero-tag-problem,
 .hero-tag-solution {
   display: inline-block;
-  font-size: 13px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #ffffff;
-  background: rgba(227, 19, 27, 0.25);
-  border-left: 3px solid var(--red);
-  padding: 8px 18px;
-  margin-bottom: 18px;
-  font-weight: 700;
-}
-
-/* Headings Más Grandes e Imponentes */
-.hero-title {
   font-family: var(--disp);
-  font-size: clamp(56px, 9.8vw, 126px);
-  line-height: 0.95;
-  letter-spacing: 0.03em;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin: 0 0 18px;
-  color: #ffffff;
-  text-shadow: 0 0 35px rgba(227, 19, 27, 0.7), 0 0 75px rgba(227, 19, 27, 0.35);
-  animation: heroPulse 4s ease-in-out infinite alternate;
-}
-
-@keyframes heroPulse {
-  0% {
-    text-shadow: 0 0 25px rgba(227, 19, 27, 0.5), 0 0 55px rgba(227, 19, 27, 0.25);
-  }
-  100% {
-    text-shadow: 0 0 50px rgba(227, 19, 27, 0.85), 0 0 100px rgba(227, 19, 27, 0.45);
-  }
-}
-
-.hero-subtitle {
-  font-size: clamp(18.5px, 1.8vw, 24px);
-  color: #f7f5f2;
-  max-width: 54ch;
-  line-height: 1.65;
-  margin: 0 auto 30px;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
-}
-
-.hero-hl {
-  color: #ff5a4a;
-  font-weight: 600;
-  text-shadow: 0 0 14px rgba(227, 19, 27, 0.45);
+  color: #2251cf;
+  background: rgba(34, 81, 207, 0.1);
+  border: 1px solid rgba(34, 81, 207, 0.3);
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 18px;
 }
 
 .hero-problem-title,
 .hero-solution-title {
   font-family: var(--disp);
-  font-size: clamp(42px, 5.2vw, 74px);
-  line-height: 1.02;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin: 0 0 20px;
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #0f172a;
+  margin: 0 0 18px;
 }
 
-.text-red {
-  color: var(--red);
+.hero-problem-title span,
+.hero-solution-title span {
+  color: #2251cf;
 }
 
 .hero-problem-desc,
 .hero-solution-desc {
-  font-size: clamp(17px, 1.3vw, 19.5px);
-  line-height: 1.68;
-  color: #dddddd;
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.65;
+  color: #334155;
   margin: 0 0 28px;
 }
 
-/* Bullet Points (Problem Scene) Más Grandes y Legibles */
-.problem-points {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.hero-problem-desc strong,
+.hero-solution-desc strong {
+  color: #0f172a;
 }
 
-.point-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  background: rgba(14, 14, 14, 0.88);
-  backdrop-filter: blur(8px);
-  border: 1px solid #2d2d2d;
-  border-left: 4px solid var(--red);
-  padding: 18px 24px;
-  font-size: 18px;
-  line-height: 1.55;
-  color: #f2f2f2;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-.point-bullet {
-  color: var(--red);
-  font-weight: 900;
-  font-size: 18px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-/* Pillars (Solution Scene) Más Grandes y Legibles */
-.solution-pillars {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.pillar-item {
-  background: rgba(14, 14, 14, 0.88);
-  backdrop-filter: blur(8px);
-  border: 1px solid #333333;
-  padding: 20px 24px;
-  border-radius: 4px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  transition: border-color 0.25s, transform 0.25s;
-}
-
-.pillar-item:hover {
-  border-color: var(--red);
-  transform: translateX(6px);
-}
-
-.pillar-item b {
-  display: block;
-  font-size: 19px;
-  color: #ffffff;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
-}
-
-.pillar-item p {
-  font-size: 16.5px;
-  line-height: 1.58;
-  color: var(--bone);
-  margin: 0;
-}
-
-/* Actions & Scroll Indicator */
+/* Hero Action Buttons */
 .hero-actions {
   display: flex;
-  gap: 14px;
   flex-wrap: wrap;
-  justify-content: center;
-}
-
-.screen-problem .hero-actions,
-.screen-solution .hero-actions {
-  justify-content: flex-start;
-}
-
-.scroll-indicator {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
+  gap: 16px;
   align-items: center;
-  gap: 6px;
-  opacity: 0.7;
-  animation: scrollFloat 2.5s ease-in-out infinite;
 }
 
-.scroll-indicator span {
-  font-size: 10px;
-  letter-spacing: 0.25em;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 30px;
+  background: #f59e0b;
+  color: #0f172a;
+  font-family: var(--disp);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--bone);
+  text-decoration: none;
+  border-radius: 9999px;
+  border: 1px solid #f59e0b;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
+  transition: all 0.25s ease;
 }
 
-.mouse-icon {
-  width: 16px;
-  height: 24px;
-  border: 2px solid var(--bone);
-  border-radius: 9px;
-  position: relative;
+.btn:hover {
+  background: #d97706;
+  border-color: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
 }
 
-.mouse-icon::after {
-  content: "";
-  position: absolute;
-  top: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2.5px;
-  height: 5px;
-  background: var(--red);
-  border-radius: 2px;
-  animation: mouseWheel 1.6s ease-in-out infinite;
+.btn.o {
+  background: #ffffff;
+  color: #2251cf;
+  border: 1.5px solid #2251cf;
+  box-shadow: 0 4px 14px rgba(34, 81, 207, 0.12);
 }
 
-@keyframes mouseWheel {
-  0% { transform: translate(-50%, 0); opacity: 1; }
-  100% { transform: translate(-50%, 8px); opacity: 0; }
-}
-
-@keyframes scrollFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-/* Asegurar que las secciones posteriores tengan z-index por encima del canvas */
-section.pg,
-footer {
-  position: relative;
-  z-index: 5;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 860px) {
-  .hero-screen {
-    padding: 90px 5vw 40px;
-  }
-
-  .screen-problem,
-  .screen-solution {
-    justify-content: center;
-  }
-
-  .screen-problem .hero-content,
-  .screen-solution .hero-content {
-    max-width: none;
-    text-align: center;
-  }
-
-  .problem-points,
-  .solution-pillars {
-    text-align: left;
-  }
-
-  .hero-actions {
-    justify-content: center !important;
-  }
+.btn.o:hover {
+  background: #eff6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(34, 81, 207, 0.20);
 }

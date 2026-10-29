@@ -40,60 +40,76 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Federant&family=Mr+De+Haviland&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Modular Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=2.4">
+  <link rel="stylesheet" href="css/style.css?v=3.5">
 </head>
 <body>
 
-  <!-- 3D Canvas Background Permanente Global (Siempre detrás sin tapar texto) -->
+  <!-- 3D Canvas Background Permanente Global -->
   <div class="stage-bg" id="stage">
-    <!-- Glow Arc Graphic -->
-    <svg class="arc" viewBox="0 0 800 300" aria-hidden="true">
-      <defs>
-        <filter id="bl">
-          <feGaussianBlur stdDeviation="6" />
-        </filter>
-      </defs>
-      <path d="M0 120 C250 150 450 230 800 300" fill="none" stroke="#e3131b" stroke-width="5" filter="url(#bl)" />
-      <path d="M0 120 C250 150 450 230 800 300" fill="none" stroke="#ff5a4a" stroke-width="1.5" />
-    </svg>
-
     <!-- 3D Canvas -->
     <canvas id="cv" aria-hidden="true"></canvas>
   </div>
 
-  <!-- Navigation -->
+  <!-- Navigation (Centered Floating Capsule Bar - Figma Exact) -->
   <nav>
-    <a class="logo" href="#">Magnates.</a>
     <div class="pill">
-      <a href="#hero">Inicio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#stack">Tecnología</a>
-      <a href="#cartagena">Cartagena</a>
-      <a class="cta" href="https://wa.me/573126414593?text=%C2%A1Hola%20Magnates!%20Estoy%20interesado%20en%20sus%20servicios%20de%20marketing%20digital%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer">Cotizar <span>↗</span></a>
+      <a href="#hero" class="nav-link nav-active">Inicio</a>
+      <a href="#servicios" class="nav-link">Servicios</a>
+      <a href="#stack" class="nav-link">Tecnologias</a>
+      <a href="#cartagena" class="nav-link">Categorias</a>
+      <a class="cta" href="https://wa.me/573126414593?text=%C2%A1Hola%20Magnates!%20Estoy%20interesado%20en%20sus%20servicios%20de%20marketing%20digital%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer">Cotizar</a>
     </div>
   </nav>
 
   <!-- Hero Section with Vertical Flow Screens -->
   <section id="hero">
 
-    <!-- Pantalla 1: INTRO MAGNATES -->
+    <!-- Pantalla 1: INTRO MAGNATES (Figma Exact Replica) -->
     <div class="hero-screen screen-intro">
+      <!-- Ambient Blurred Horizon Banner (Gold & Royal Blue) -->
+      <div class="ambient-banner" aria-hidden="true"></div>
+
       <div class="hero-content">
-        <div class="hero-badge">Agencia de Marketing Digital 360 · Cartagena · Colombia · Global</div>
-        <h1 class="hero-title">Magnates</h1>
-        <p class="hero-subtitle">
-          Hacemos que tu marca <span class="hero-hl">lidere en redes</span>, posicione en Google y <span class="hero-hl">venda más todos los días</span>.
-        </p>
-        <div class="hero-actions">
-          <a class="btn" href="https://wa.me/573126414593?text=%C2%A1Hola%20Magnates!%20Estoy%20interesado%20en%20cotizar%20un%20proyecto%20de%20marketing%20digital%20para%20mi%20marca." target="_blank" rel="noopener noreferrer">Cotizar proyecto ↗</a>
-          <a class="btn o" href="#servicios">Ver servicios</a>
+        <div class="hero-tagline">
+          Agencia de Marketing Digital 360 · Cartagena · Colombia · Global
         </div>
-        <div class="scroll-indicator">
+
+        <h1 class="hero-title" aria-label="MAGNATES">
+          <span class="sr-only">MAGNATES</span>
+          <span class="title-char">M</span>
+          <svg viewBox="0 0 100 86" class="title-char-a" aria-hidden="true">
+            <!-- Royal Blue Triangle -->
+            <polygon points="50,2 98,84 2,84" fill="#2251cf" />
+            <!-- White Lion Silhouette -->
+            <polygon points="50,38 45,50 37,50 30,59 32,63 30,69 36,78 41,84 50,84 59,84 64,78 70,69 68,63 70,59 63,50 55,50" fill="#ffffff" />
+            <!-- Left Eye Cutout -->
+            <polygon points="35,64 43,68 38,70" fill="#2251cf" />
+            <!-- Right Eye Cutout -->
+            <polygon points="65,64 57,68 62,70" fill="#2251cf" />
+            <!-- Nose Cutout -->
+            <polygon points="46,75 54,75 50,80" fill="#2251cf" />
+          </svg>
+          <span class="title-char">G</span>
+          <span class="title-char">N</span>
+          <svg viewBox="0 0 100 86" class="title-char-a" aria-hidden="true">
+            <polygon points="50,2 98,84 2,84" fill="#2251cf" />
+            <circle cx="50" cy="55" r="9.5" fill="#ffffff" />
+          </svg>
+          <span class="title-char">T</span>
+          <span class="title-char">E</span>
+          <span class="title-char">S</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Hacemos que tu marca lidere en redes, posicione en Google y venda más todos los días.
+        </p>
+
+        <div class="scroll-indicator" style="margin-top: 40px; color: #2251cf;">
           <span>Haz scroll para descubrir</span>
-          <div class="mouse-icon"></div>
+          <div class="mouse-icon" style="border-color: #2251cf;"></div>
         </div>
       </div>
     </div>
@@ -422,7 +438,7 @@
        - 'js/magnates.standalone.js' enables immediate preview when opened directly from desktop (file:///)
        - 'js/main.js' (type="module") provides the modular architecture for development
   -->
-  <script src="js/magnates.standalone.js?v=3.1"></script>
+  <script src="js/magnates.standalone.js?v=3.5"></script>
   <!-- <script type="module" src="js/main.js"></script> -->
 </body>
 </html>

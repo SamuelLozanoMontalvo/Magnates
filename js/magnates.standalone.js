@@ -225,12 +225,12 @@
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Keyframes por pantalla:
-    // 0: Intro (Centro), 1: Problema (Derecha), 2: Solución (Izquierda), 3: Fondo
+    // 0: Intro (Abajo en el horizonte atmosférico), 1: Problema (Derecha), 2: Solución (Izquierda), 3: Fondo
     const KEYFRAMES = [
-      { sp: 0.18, tilt: 0.22, sz: 0.54, x: 0.50, y: 0.44 },
-      { sp: 0.65, tilt: 0.28, sz: 0.50, x: 0.78, y: 0.50 },
-      { sp: -0.42, tilt: 0.16, sz: 0.50, x: 0.22, y: 0.50 },
-      { sp: 0.20, tilt: 0.24, sz: 0.40, x: 0.50, y: 0.50 }
+      { sp: 0.18, tilt: 0.22, sz: 0.36, x: 0.50, y: 0.64 },
+      { sp: 0.65, tilt: 0.28, sz: 0.48, x: 0.78, y: 0.50 },
+      { sp: -0.42, tilt: 0.16, sz: 0.48, x: 0.22, y: 0.50 },
+      { sp: 0.20, tilt: 0.24, sz: 0.38, x: 0.50, y: 0.50 }
     ];
 
     // Geometría 3D de la Pirámide (Vértices)
@@ -402,11 +402,11 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
 
-      // Halo radial ambiental (Núcleo azul cobalto + destello carmesí profundo)
+      // Halo radial ambiental (Núcleo azul cobalto + destello dorado sutil)
       const radialGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, scale * 1.6);
-      radialGlow.addColorStop(0, "rgba(24, 110, 245, 0.26)");
-      radialGlow.addColorStop(0.45, "rgba(227, 19, 27, 0.12)");
-      radialGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+      radialGlow.addColorStop(0, "rgba(34, 81, 207, 0.14)");
+      radialGlow.addColorStop(0.5, "rgba(245, 158, 11, 0.08)");
+      radialGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
       ctx.fillStyle = radialGlow;
       ctx.fillRect(0, 0, width, height);
 
