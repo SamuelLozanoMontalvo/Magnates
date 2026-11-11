@@ -25,9 +25,9 @@
   --red-glow: rgba(34, 81, 207, 0.25);
 
   /* Typography */
-  --sans: "Plus Jakarta Sans", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-  --disp: "Orbitron", -apple-system, sans-serif;
-  --logo-font: "Orbitron", sans-serif;
+  --sans: "Outfit", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --disp: "Eurostile Extended", "Outfit", -apple-system, sans-serif;
+  --logo-font: "Eurostile Extended", sans-serif;
 
   /* Safe Area Spacing */
   box-sizing: border-box;

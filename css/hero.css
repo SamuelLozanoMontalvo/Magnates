@@ -45,6 +45,25 @@ canvas#cv {
   overflow: hidden;
 }
 
+/* Soft fade: blends the ambient colors into the next (white) section */
+#hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(180px, 38%, 420px);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 35%,
+    rgba(255, 255, 255, 0.75) 65%,
+    #ffffff 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
 .hero-screen {
   position: relative;
   min-height: 100vh;
@@ -99,7 +118,7 @@ canvas#cv {
 /* Screen 1: Top Tagline */
 .hero-tagline {
   color: #2251cf;
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-size: clamp(11.5px, 1.25vw, 14px);
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -147,7 +166,7 @@ canvas#cv {
 /* Screen 1: Subtitle */
 .hero-subtitle {
   color: #2251cf;
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-size: clamp(12px, 1.25vw, 15px);
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -161,7 +180,7 @@ canvas#cv {
 .hero-tag-problem,
 .hero-tag-solution {
   display: inline-block;
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -217,7 +236,7 @@ canvas#cv {
   padding: 14px 30px;
   background: #f59e0b;
   color: #0f172a;
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-size: 12.5px;
   font-weight: 800;
   letter-spacing: 0.06em;

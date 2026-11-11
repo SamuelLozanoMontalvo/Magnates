@@ -6,7 +6,7 @@
   function init() {
     // 1. Navigation Active Link on Scroll
     const navLinks = document.querySelectorAll("nav .nav-link");
-    const sections = ["hero", "problema", "servicios", "tecnologias", "contacto"];
+    const sections = ["hero", "problema", "servicios", "tecnologias", "marketing", "categorias", "contacto"];
 
     function updateNav() {
       const scrollY = window.scrollY || window.pageYOffset;
