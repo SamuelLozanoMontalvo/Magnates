@@ -1,0 +1,42 @@
+/* ==========================================================================
+   SECTION 5: MARKETING — "MARKETING DIGITAL QUE SÍ VENDE" (FIGMA EXACT REPLICA)
+   ========================================================================== */
+.section-marketing {
+  position: relative;
+  z-index: 5;
+  background: #ffffff;
+  padding: clamp(70px, 9vw, 110px) 6vw;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.mkt-title {
+  font-family: var(--disp);
+  font-size: clamp(30px, 4.2vw, 52px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #0f172a;
+  margin: 0 0 clamp(28px, 3.5vw, 44px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mkt-body {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mkt-body p {
+  font-size: clamp(14.5px, 1.15vw, 16.5px);
+  line-height: 1.7;
+  color: #334155;
+  margin: 0;
+}
+
+.mkt-body strong {
+  color: #0f172a;
+  font-weight: 700;
+}

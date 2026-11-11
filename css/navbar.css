@@ -31,7 +31,7 @@ nav {
 .pill a.nav-link {
   color: #2251cf;
   text-decoration: none;
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-weight: 700;
   font-size: 11.5px;
   letter-spacing: 0.08em;
@@ -54,7 +54,7 @@ nav {
   background: #f59e0b;
   color: #0f172a;
   text-decoration: none;
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-weight: 800;
   font-size: 11.5px;
   letter-spacing: 0.08em;

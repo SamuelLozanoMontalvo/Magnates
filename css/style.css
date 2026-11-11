@@ -2,12 +2,15 @@
    MAGNATES MAIN STYLESHEET — EXACT FIGMA REPLICA (5 SCREENS)
    ========================================================================== */
 
-@import url("./variables.css?v=4.0");
-@import url("./base.css?v=4.0");
-@import url("./navbar.css?v=4.0");
-@import url("./hero.css?v=4.0");
-@import url("./problem.css?v=4.0");
-@import url("./solution.css?v=4.0");
-@import url("./tech.css?v=4.0");
-@import url("./contact.css?v=4.0");
-@import url("./footer.css?v=4.0");
+@import url("./fonts.css?v=4.1");
+@import url("./variables.css?v=4.1");
+@import url("./base.css?v=4.1");
+@import url("./navbar.css?v=4.1");
+@import url("./hero.css?v=4.2");
+@import url("./problem.css?v=4.1");
+@import url("./solution.css?v=4.1");
+@import url("./tech.css?v=4.1");
+@import url("./marketing.css?v=4.1");
+@import url("./categories.css?v=4.1");
+@import url("./contact.css?v=4.1");
+@import url("./footer.css?v=4.1");

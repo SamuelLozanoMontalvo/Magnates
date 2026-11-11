@@ -1,0 +1,10 @@
+/* ==========================================================================
+   FONTS — LOCAL BRAND DISPLAY FONT (EUROSTILE EXTENDED BLACK)
+   ========================================================================== */
+@font-face {
+  font-family: "Eurostile Extended";
+  src: url("../font/EurostileExtendedBlack.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
