@@ -1,0 +1,125 @@
+/* ==========================================================================
+   SECTION 6: CATEGORÍAS — "ESTRATÉGICA Y ELEGANTE" (FIGMA EXACT REPLICA)
+   ========================================================================== */
+.section-categories {
+  position: relative;
+  z-index: 5;
+  background: #ffffff;
+  padding: clamp(70px, 9vw, 110px) 6vw;
+  box-sizing: border-box;
+}
+
+.cat-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 5vw, 60px);
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto clamp(40px, 5vw, 60px);
+}
+
+.cat-title {
+  font-family: var(--disp);
+  font-size: clamp(32px, 4.4vw, 56px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.cat-desc {
+  font-size: clamp(14.5px, 1.15vw, 16.5px);
+  line-height: 1.65;
+  color: #334155;
+  margin: 0;
+  max-width: 520px;
+  justify-self: end;
+}
+
+/* 3x2 Grid of Category Cards */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2.4vw, 28px);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.cat-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: clamp(22px, 2.6vw, 30px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.cat-card:hover {
+  transform: translateY(-4px);
+  border-color: #ebb01b;
+  box-shadow: 0 12px 32px rgba(235, 176, 27, 0.18);
+}
+
+.cat-icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.cat-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: #ebb01b;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+
+.cat-card:hover .cat-icon svg {
+  transform: scale(1.12);
+}
+
+.cat-card h3 {
+  font-family: var(--disp);
+  font-size: clamp(12.5px, 1vw, 14px);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0f172a;
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+.cat-card p {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .cat-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cat-desc {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+}

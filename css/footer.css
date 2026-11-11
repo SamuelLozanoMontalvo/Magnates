@@ -29,14 +29,18 @@ footer {
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #1e3a8a;
-  font-family: var(--disp);
-  font-size: clamp(26px, 3vw, 36px);
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-logo:hover {
+  opacity: 0.85;
+}
+
+.footer-logo img {
+  display: block;
+  height: clamp(24px, 2.6vw, 34px);
+  width: auto;
 }
 
 /* Vertical Divider */
@@ -66,7 +70,7 @@ footer {
   gap: 10px;
   color: #1e3a8a;
   text-decoration: none;
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -95,7 +99,7 @@ footer {
 }
 
 .sitemap-title {
-  font-family: var(--disp);
+  font-family: var(--sans);
   font-size: 13.5px;
   font-weight: 900;
   letter-spacing: 0.14em;

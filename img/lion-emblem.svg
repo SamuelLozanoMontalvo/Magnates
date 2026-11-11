@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 110" fill="none">
-  <!-- White Sculpted Lion Face (Figma Exact) -->
-  <path d="M50 25 L43 43 L33 43 L23 57 L26 63 L23 71 L31 84 L38 92 L50 92 L62 92 L69 84 L77 71 L74 63 L77 57 L67 43 L57 43 Z" fill="#ffffff" filter="drop-shadow(0 6px 14px rgba(0,0,0,0.15))"/>
-  <!-- Eyes cutouts (shows underlying yellow/amber) -->
-  <polygon points="29,66 40,71 34,74" fill="#eab308" />
-  <polygon points="71,66 60,71 66,74" fill="#eab308" />
-  <!-- Nose cutout -->
-  <polygon points="45,80 55,80 50,86" fill="#eab308" />
-</svg>
