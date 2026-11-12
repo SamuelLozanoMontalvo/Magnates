@@ -1,0 +1,238 @@
+/* ==========================================================================
+   AJUSTES SOLO VISTA MÓVIL
+   - Títulos principales y párrafos de sección centrados.
+   - Títulos y párrafos dentro de tarjetas se mantienen como están.
+   ========================================================================== */
+@media (max-width: 860px) {
+  /* Títulos principales */
+  .prob-heading-left,
+  .prob-heading-right,
+  .sol-title,
+  .tech-title,
+  .mkt-title,
+  .cat-title {
+    text-align: center;
+    justify-self: center;
+  }
+
+  /* Párrafos de sección (no tarjetas) */
+  .prob-desc-top,
+  .sol-desc,
+  .cat-desc {
+    text-align: center;
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* El título "¿PUBLICAS Y NO VENDES?" encabeza las 3 tarjetas */
+  .prob-heading-right {
+    order: 3;
+  }
+  .prob-cards {
+    order: 4;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Más separación entre el logo y el nombre MAGNATES */
+  .sol-panel-left {
+    gap: 28px;
+    justify-content: center;
+  }
+
+  /* Difuminar el paso de amarillo a azul */
+  .sol-panel-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 150px;
+    background: linear-gradient(
+      to bottom,
+      #F2BD56 0%,
+      #EAB859 12%,
+      #D1AA63 26%,
+      #AD9572 40%,
+      #847D82 54%,
+      #5D6792 68%,
+      #3F559E 82%,
+      #324DA4 92%,
+      #2E4BA5 100%
+    );
+    pointer-events: none;
+  }
+
+}
+
+/* Pilares de solución y bloque de contacto centrados en móvil */
+@media (max-width: 880px) {
+  .sol-pillar h3 {
+    text-align: center;
+  }
+  .sol-pillar p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+
+  .contact-left {
+    align-items: center;
+    text-align: center;
+  }
+  .contact-title,
+  .contact-desc {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Footer móvil: logo centrado arriba; redes y sitemap en dos columnas */
+@media (max-width: 820px) {
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    column-gap: 24px;
+    row-gap: 28px;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+  .footer-socials {
+    justify-self: start;
+  }
+  .footer-sitemap {
+    justify-self: end;
+    width: max-content;
+  }
+}
+
+/* Tecnologías móvil: 15 iconos en 3 filas de 5 */
+@media (max-width: 680px) {
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 22px 6px;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .tech-row {
+    display: contents;
+  }
+  .tech-item {
+    justify-content: center;
+    padding: 4px;
+    min-width: 0;
+  }
+  .tech-item img {
+    width: 100%;
+    max-width: 100%;
+    height: 32px;
+    object-fit: contain;
+  }
+}
+
+/* Footer móvil: las columnas terminan donde termina el logo */
+@media (max-width: 820px) {
+  .footer-inner {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    justify-self: stretch;
+  }
+  .footer-logo img {
+    height: auto;
+    width: min(280px, 78vw);
+  }
+}
+
+/* Espaciado uniforme (16px) debajo de cada título en móvil */
+@media (max-width: 880px) {
+  .sol-title,
+  .mkt-title,
+  .contact-title,
+  .cat-title,
+  .prob-heading-left,
+  .prob-heading-right,
+  .sol-pillar h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+  .tech-title {
+    margin-bottom: 0;
+  }
+  .tech-header {
+    margin-bottom: 16px;
+  }
+  .prob-grid {
+    row-gap: 16px;
+  }
+  .prob-heading-right {
+    margin-top: 28px;
+  }
+  .cat-header {
+    gap: 0;
+    margin-bottom: 28px;
+  }
+}
+
+/* Separación uniforme (80px) al iniciar cada nueva sección en móvil */
+@media (max-width: 880px) {
+  .section-problem,
+  .section-tech,
+  .section-marketing,
+  .section-categories,
+  .section-contact {
+    padding-top: 80px;
+  }
+  /* Secciones blancas seguidas: el espacio lo da solo el padding-top de la siguiente */
+  .section-tech,
+  .section-marketing,
+  .section-categories {
+    padding-bottom: 0;
+  }
+  /* "Publicas y no vendes" abre un nuevo bloque: 16px de gap + 64px = 80px */
+  .prob-heading-right {
+    margin-top: 64px;
+  }
+}
+
+
+/* Solución (móvil): descripción grande y pilares centrados con más aire */
+@media (max-width: 880px) {
+  .sol-desc {
+    font-size: 17px;
+    line-height: 1.55;
+    color: #ffffff;
+    max-width: 320px;
+  }
+  .sol-header {
+    margin-bottom: 56px;
+  }
+  .sol-pillars {
+    gap: 56px;
+    margin-top: 0;
+  }
+  .sol-pillar h3 {
+    text-align: center;
+    letter-spacing: 0.06em;
+  }
+  .sol-pillar p {
+    text-align: center;
+    hyphens: manual;
+    -webkit-hyphens: manual;
+    max-width: 290px;
+    margin: 0 auto;
+    color: #ffffff;
+  }
+}

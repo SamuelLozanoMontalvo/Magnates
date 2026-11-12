@@ -66,3 +66,9 @@ h2.d {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Primera letra en mayúscula en cada párrafo */
+p::first-letter,
+.prob-card span:last-child::first-letter {
+  text-transform: uppercase;
+}

@@ -4,8 +4,8 @@
 footer {
   position: relative;
   z-index: 5;
-  background: #ebb01b;
-  color: #1e3a8a;
+  background: #F2BD56;
+  color: #2E4BA5;
   padding: clamp(36px, 4.5vw, 54px) 6vw;
   box-sizing: border-box;
 }
@@ -47,7 +47,7 @@ footer {
 .footer-divider {
   width: 2px;
   height: 48px;
-  background: #1e3a8a;
+  background: #2E4BA5;
   opacity: 0.6;
 }
 
@@ -68,7 +68,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #1e3a8a;
+  color: #2E4BA5;
   text-decoration: none;
   font-family: var(--sans);
   font-size: 11.5px;
@@ -104,12 +104,12 @@ footer {
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #1e3a8a;
+  color: #2E4BA5;
   margin-bottom: 4px;
 }
 
 .sitemap-link {
-  color: #1e3a8a;
+  color: #2E4BA5;
   text-decoration: none;
   font-size: 13.5px;
   font-weight: 600;
