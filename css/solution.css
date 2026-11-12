@@ -18,7 +18,7 @@
 
 /* Left Panel: Yellow with White Lion */
 .sol-panel-left {
-  background: #ebb01b;
+  background: #F2BD56;
   width: 22%;
   min-width: 240px;
   padding: 44px 28px;
@@ -56,6 +56,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .sol-lion-wrapper img,
@@ -66,7 +68,7 @@
 
 /* Right Panel: Deep Royal Blue with Solution Pillars */
 .sol-panel-right {
-  background: #1e40af;
+  background: #2E4BA5;
   flex: 1;
   padding: clamp(50px, 6vw, 76px) clamp(30px, 5vw, 70px);
   display: flex;

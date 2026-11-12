@@ -54,7 +54,7 @@
   align-items: center;
   gap: 16px;
   background: #ffffff;
-  border-left: 4px solid #ebb01b;
+  border-left: 4px solid #F2BD56;
   padding: 16px 20px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
   border-radius: 2px 6px 6px 2px;
@@ -63,11 +63,11 @@
 
 .prob-card:hover {
   transform: translateX(4px);
-  box-shadow: 0 6px 24px rgba(235, 176, 27, 0.15);
+  box-shadow: 0 6px 24px rgba(242, 189, 86, 0.15);
 }
 
 .prob-x {
-  color: #ebb01b;
+  color: #F2BD56;
   font-size: 18px;
   font-weight: 900;
   line-height: 1;
@@ -87,15 +87,15 @@
   font-weight: 900;
   line-height: 1.15;
   color: #0f172a;
-  margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   justify-self: end;
   text-align: left;
+
 }
 
 .hl-gold {
-  color: #ebb01b;
+  color: #F2BD56;
 }
 
 @media (max-width: 860px) {

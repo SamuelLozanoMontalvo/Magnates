@@ -1,0 +1,133 @@
+/* ==========================================================================
+   ANIMACIONES SUAVES — solo opacity / translate / scale
+   Una única curva de movimiento para toda la web. Cada elemento se anima
+   una sola vez al entrar. Todo queda visible si JS falla o si el usuario
+   pide menos movimiento.
+   ========================================================================== */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --anim-dur: 0.8s;
+}
+
+/* ---------- Aparición (fade-up) ---------- */
+.js-anim .reveal {
+  opacity: 0;
+  translate: 0 22px;
+  transition:
+    opacity var(--anim-dur) var(--ease-out),
+    translate var(--anim-dur) var(--ease-out),
+    /* conserva los hover originales de tarjetas / iconos */
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+  transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s, 0s, 0s;
+  will-change: opacity, translate;
+}
+
+.js-anim .reveal.in {
+  opacity: 1;
+  translate: 0 0;
+  will-change: auto;
+}
+
+/* Logo del hero: entrada lenta con leve escala */
+.js-anim .hero-logo.reveal {
+  scale: 0.96;
+  translate: 0 0;
+  transition:
+    opacity 1.1s var(--ease-out),
+    scale 1.1s var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+.js-anim .hero-logo.reveal.in {
+  scale: 1;
+}
+
+/* ---------- Títulos revelados línea por línea ---------- */
+.js-anim .reveal-title .ln {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.js-anim .reveal-title .ln-in {
+  display: inline-block;
+  translate: 0 110%;
+  transition: translate 0.9s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 0.1s + var(--d, 0s));
+}
+.js-anim .reveal-title.in .ln-in {
+  translate: 0 0;
+}
+
+/* ---------- Palabra dorada con barrido (una vez) ---------- */
+.reveal-title.in .hl-gold {
+  background-image: linear-gradient(
+    100deg,
+    #F2BD56 35%,
+    #FBE3A6 50%,
+    #F2BD56 65%
+  );
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-sweep 1.8s var(--ease-out) 0.5s 1 forwards;
+}
+@keyframes gold-sweep {
+  from { background-position: 100% 0; }
+  to   { background-position: 0% 0; }
+}
+
+/* ---------- Navbar ---------- */
+.js-anim nav {
+  animation: nav-in 0.9s var(--ease-out) 0.1s both;
+}
+@keyframes nav-in {
+  from { opacity: 0; translate: 0 -12px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+.pill {
+  transition: box-shadow 0.35s ease, background-color 0.35s ease;
+}
+nav.nav-scrolled .pill {
+  background: rgba(243, 244, 248, 0.97);
+  box-shadow: 0 8px 28px -6px rgba(15, 23, 42, 0.16);
+}
+
+/* ---------- Shader del hero: aparece suavemente ---------- */
+.hero-shader canvas {
+  animation: shader-in 1.6s ease both;
+}
+@keyframes shader-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- Hover suave ---------- */
+.prob-card,
+.cat-card,
+.btn,
+.f-submit,
+.pill a.cta {
+  transition-timing-function: var(--ease-out);
+}
+
+/* ---------- Respetar "reducir movimiento" ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js-anim .reveal,
+  .js-anim .hero-logo.reveal,
+  .js-anim .reveal-title .ln-in {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    scale: 1 !important;
+    transition: none !important;
+  }
+  .js-anim nav,
+  .hero-shader canvas,
+  .reveal-title.in .hl-gold {
+    animation: none !important;
+  }
+}

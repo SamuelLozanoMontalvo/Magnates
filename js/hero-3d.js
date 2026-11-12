@@ -193,8 +193,8 @@ export function initHero3D() {
 
     // Halo radial ambiental (Núcleo azul cobalto + destello dorado sutil)
     const radialGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, scale * 1.6);
-    radialGlow.addColorStop(0, "rgba(34, 81, 207, 0.14)");
-    radialGlow.addColorStop(0.5, "rgba(245, 158, 11, 0.08)");
+    radialGlow.addColorStop(0, "rgba(46, 75, 165, 0.14)");
+    radialGlow.addColorStop(0.5, "rgba(242, 189, 86, 0.08)");
     radialGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
     ctx.fillStyle = radialGlow;
     ctx.fillRect(0, 0, width, height);

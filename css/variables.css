@@ -9,11 +9,11 @@
   --ink: #0f172a;
   --ink-muted: #334155;
   --ink-card: #f8fafc;
-  --blue-primary: #2251cf;
-  --blue-deep: #1d4ed8;
+  --blue-primary: #2E4BA5;
+  --blue-deep: #2E4BA5;
   --blue-light: #eff6ff;
-  --gold: #f59e0b;
-  --gold-glow: rgba(245, 158, 11, 0.35);
+  --gold: #F2BD56;
+  --gold-glow: rgba(242, 189, 86, 0.35);
   --white: #ffffff;
   --gray-light: #64748b;
   --gray-border: #e2e8f0;
@@ -21,8 +21,8 @@
 
   /* Legacy variable mappings for backward compatibility */
   --bone: #334155;
-  --red: #2251cf;
-  --red-glow: rgba(34, 81, 207, 0.25);
+  --red: #2E4BA5;
+  --red-glow: rgba(46, 75, 165, 0.25);
 
   /* Typography */
   --sans: "Outfit", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;

@@ -28,12 +28,28 @@ canvas#cv {
   left: -12%;
   right: -12%;
   height: 56%;
-  background: linear-gradient(168deg, rgba(234, 179, 8, 0.48) 0%, rgba(245, 158, 11, 0.38) 28%, rgba(34, 81, 207, 0.62) 60%, rgba(29, 78, 216, 0.82) 100%);
+  background: linear-gradient(168deg, rgba(242, 189, 86, 0.48) 0%, rgba(242, 189, 86, 0.38) 28%, rgba(46, 75, 165, 0.62) 60%, rgba(46, 75, 165, 0.82) 100%);
   filter: blur(95px);
   -webkit-filter: blur(95px);
   transform: rotate(-5deg);
   pointer-events: none;
   z-index: 1;
+  display: none; /* reemplazado por .hero-shader */
+}
+
+/* Shader animado (Three.js) con la paleta del difuminado */
+.hero-shader {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-shader canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* Hero Section with Screens */
@@ -117,7 +133,7 @@ canvas#cv {
 
 /* Screen 1: Top Tagline */
 .hero-tagline {
-  color: #2251cf;
+  color: #2E4BA5;
   font-family: var(--sans);
   font-size: clamp(11.5px, 1.25vw, 14px);
   font-weight: 800;
@@ -133,7 +149,7 @@ canvas#cv {
   align-items: center;
   justify-content: center;
   gap: clamp(6px, 1.1vw, 14px);
-  color: #2251cf;
+  color: #2E4BA5;
   font-family: var(--disp);
   font-size: clamp(44px, 6.4vw, 92px);
   font-weight: 900;
@@ -165,7 +181,7 @@ canvas#cv {
 
 /* Screen 1: Subtitle */
 .hero-subtitle {
-  color: #2251cf;
+  color: #2E4BA5;
   font-family: var(--sans);
   font-size: clamp(12px, 1.25vw, 15px);
   font-weight: 800;
@@ -185,9 +201,9 @@ canvas#cv {
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #2251cf;
-  background: rgba(34, 81, 207, 0.1);
-  border: 1px solid rgba(34, 81, 207, 0.3);
+  color: #2E4BA5;
+  background: rgba(46, 75, 165, 0.1);
+  border: 1px solid rgba(46, 75, 165, 0.3);
   padding: 6px 16px;
   border-radius: 999px;
   margin-bottom: 18px;
@@ -205,7 +221,7 @@ canvas#cv {
 
 .hero-problem-title span,
 .hero-solution-title span {
-  color: #2251cf;
+  color: #2E4BA5;
 }
 
 .hero-problem-desc,
@@ -234,7 +250,7 @@ canvas#cv {
   align-items: center;
   gap: 8px;
   padding: 14px 30px;
-  background: #f59e0b;
+  background: #F2BD56;
   color: #0f172a;
   font-family: var(--sans);
   font-size: 12.5px;
@@ -243,27 +259,27 @@ canvas#cv {
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 9999px;
-  border: 1px solid #f59e0b;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
+  border: 1px solid #F2BD56;
+  box-shadow: 0 4px 16px rgba(242, 189, 86, 0.35);
   transition: all 0.25s ease;
 }
 
 .btn:hover {
-  background: #d97706;
-  border-color: #d97706;
+  background: #E0A93F;
+  border-color: #E0A93F;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+  box-shadow: 0 6px 20px rgba(242, 189, 86, 0.45);
 }
 
 .btn.o {
   background: #ffffff;
-  color: #2251cf;
-  border: 1.5px solid #2251cf;
-  box-shadow: 0 4px 14px rgba(34, 81, 207, 0.12);
+  color: #2E4BA5;
+  border: 1.5px solid #2E4BA5;
+  box-shadow: 0 4px 14px rgba(46, 75, 165, 0.12);
 }
 
 .btn.o:hover {
   background: #eff6ff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(34, 81, 207, 0.20);
+  box-shadow: 0 6px 18px rgba(46, 75, 165, 0.20);
 }
