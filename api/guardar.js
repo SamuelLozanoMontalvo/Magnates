@@ -16,9 +16,15 @@ export default async function handler(req) {
     const body = await req.json();
     const sql = neon(process.env.DATABASE_URL);
 
+    // Toma el valor sin importar cómo se llame exactamente el "name" en tu HTML
+    const nombre = body.nombre || body.name || '';
+    const correo = body.email || body.correo || '';
+    const celular = body.telefono || body.celular || body.phone || body.tel || '';
+    const mensaje = body.mensaje || body.message || body.necesitas || body.descripcion || '';
+
     await sql`
-      INSERT INTO respuestas_form (datos)
-      VALUES (${JSON.stringify(body)}::jsonb)
+      INSERT INTO respuestas_form (nombre, correo, celular, mensaje)
+      VALUES (${nombre}, ${correo}, ${celular}, ${mensaje})
     `;
 
     return new Response(JSON.stringify({ ok: true }), {
