@@ -55,7 +55,7 @@ export function initContactForm(formId, tagsContainerId, tags) {
       }
 
       const waText = encodeURIComponent(`¡Hola Magnates! Acabo de enviar mi proyecto desde la web:\n\n• Nombre: ${nombre}\n• Email: ${email}\n• WhatsApp: ${tel}\n• Servicios: ${servicios}\n• Detalles: ${mensaje}`);
-      const waUrl = `https://wa.me/573126414593?text=${waText}`;
+      const waUrl = `https://wa.me/573046059708?text=${waText}`;
 
       successNotice.innerHTML = `
         <b style="color:#25D366;display:block;margin-bottom:4px">✓ Solicitud recibida</b>
@@ -66,7 +66,7 @@ export function initContactForm(formId, tagsContainerId, tags) {
       `;
 
       try {
-        fetch("https://formsubmit.co/ajax/samylozano00@gmail.com", {
+        fetch("https://formsubmit.co/ajax/contacto@magnates.site", {
           method: "POST",
           headers: {
             "Accept": "application/json"

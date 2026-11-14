@@ -61,7 +61,7 @@
         }
 
         const waText = encodeURIComponent(`¡Hola Magnates! Acabo de enviar mi proyecto desde la web:\n\n• Nombre: ${nombre}\n• Email: ${email}\n• WhatsApp: ${tel}\n• Mensaje: ${mensaje}`);
-        const waUrl = `https://wa.me/573126414593?text=${waText}`;
+        const waUrl = `https://wa.me/573046059708?text=${waText}`;
 
         notice.innerHTML = `
           <b>✓ Solicitud recibida</b><br>
@@ -73,7 +73,7 @@
 
         // Async submit to FormSubmit
         try {
-          fetch("https://formsubmit.co/ajax/samylozano00@gmail.com", {
+          fetch("https://formsubmit.co/ajax/contacto@magnates.site", {
             method: "POST",
             headers: { "Accept": "application/json" },
             body: new FormData(fm)
