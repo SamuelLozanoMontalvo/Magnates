@@ -749,5 +749,30 @@
     <script src="js/magnates.standalone.js?v=4.0"></script>
     <script src="js/hero-shader.js?v=5.0"></script>
     <script src="js/animations.js?v=1.0"></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+   
+    const form = document.querySelector('form');
+    if (!form) return;
+
+    form.addEventListener('submit', function () {
+      const formData = new FormData(form);
+      const datos = Object.fromEntries(formData.entries());
+
+      // Envía una copia a tu base de datos de Vercel sin detener el envío al correo
+      fetch('/api/guardar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos),
+        keepalive: true // Asegura que se envíe aunque la página redirija tras mandar el correo
+      }).catch((err) => console.error('Error guardando en Vercel:', err));
+    });
+  });
+</script>
+
+
+
   </body>
 </html>
