@@ -1,7 +1,9 @@
 /* ==========================================================================
    HERO & AMBIENT ATMOSPHERE — EXACT FIGMA REPLICA
    ========================================================================== */
-
+h1{
+  font-size: 15px;
+}
 /* Stage fixed background behind content */
 .stage-bg {
   position: fixed;
