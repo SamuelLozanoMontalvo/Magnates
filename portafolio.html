@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portafolio</title>
+    <meta
+      name="description"
+      content="Portafolio interactivo: un libro físico sobre un escritorio iluminado por una lámpara. Abre el libro y hojea los trabajos."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/portafolio.css" />
+  </head>
+
+  <body data-state="closed">
+    <!-- ===================== HEADER FIJO ===================== -->
+    <header class="site-header">
+      <a class="logo" href="#" aria-label="Inicio">
+        <span class="logo-mark" aria-hidden="true">
+          <img src="img/logo-blaco.png" alt="Logo" />
+        </span>
+      </a>
+      <div class="header-actions">
+        <button
+          class="btn-contents"
+          id="btnContents"
+          aria-label="Abrir el índice de proyectos"
+        >
+          Contents
+        </button>
+        <a class="btn-touch" href="mailto:contacto@magnates.site" id="btnTouch"
+          >Contáctanos</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <section
+        class="scene"
+        id="scene"
+        aria-label="Escritorio con el libro del portafolio"
+      >
+        <div class="wood"></div>
+        <div class="lamp" id="lamp"></div>
+
+        <!-- Props decorativos (SVG placeholders con sombra, parallax por data-depth) -->
+        <div class="prop p-plant" data-depth="14" aria-hidden="true">
+          <img src="svg/planta.svg" alt="" />
+        </div>
+        <div class="prop p-cup" data-depth="18" aria-hidden="true">
+          <img src="svg/cup.svg" alt="" />
+        </div>
+        <div class="prop p-pencil" data-depth="10" aria-hidden="true">
+          <img src="svg/lapiz.svg" alt="" />
+        </div>
+        <div class="prop p-card" data-depth="22" aria-hidden="true">
+          <div class="card-flip">
+            <div class="card-face card-front">
+              <img
+                src="svg/frente.svg"
+                alt="Tarjeta frente"
+                draggable="false"
+              />
+            </div>
+            <div class="card-face card-back">
+              <a
+                href=""
+                class="card-social card-social-1"
+                aria-label="Red social 1"
+              ></a>
+              <a
+                href=""
+                class="card-social card-social-2"
+                aria-label="Red social 2"
+              ></a>
+              <a
+                href=""
+                class="card-social card-social-3"
+                aria-label="Red social 3"
+              ></a>
+              <img
+                src="svg/reversa.svg"
+                alt="Tarjeta reversa"
+                draggable="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO (libro cerrado) -->
+        <section class="hero" id="hero">
+          <h1>Ideas hechas realidad.</h1>
+          <p>
+            Transformamos ideas en experiencias digitales a través de la
+            creatividad, la tecnología y la innovación.
+          </p>
+        </section>
+
+        <!-- LIBRO -->
+        <div class="stage">
+          <div class="tilt" id="tilt">
+            <div class="book closed" id="book">
+              <div class="pg pg-left noleft" id="pgL"></div>
+              <div class="pg pg-right" id="pgR"></div>
+              <div class="gutter"></div>
+              <div class="leaf" id="leaf" hidden>
+                <div class="face front" id="leafFront"></div>
+                <div class="face back" id="leafBack"></div>
+              </div>
+              <div
+                class="cover"
+                id="cover"
+                role="button"
+                tabindex="0"
+                aria-label="Abrir el libro del portafolio"
+              >
+                <div class="face front">
+                  <div class="cover-logo">
+                    <span class="logo-mark"
+                      ><img src="img/logo-blaco.png" alt="Logo"
+                    /></span>
+                  </div>
+                  <span class="cover-hint">Click to open</span>
+                </div>
+                <div class="face back" id="coverBack"></div>
+              </div>
+              <button
+                class="edge edge-l"
+                id="edgeL"
+                aria-label="Página anterior"
+              ></button>
+              <button
+                class="edge edge-r"
+                id="edgeR"
+                aria-label="Página siguiente"
+              ></button>
+            </div>
+          </div>
+        </div>
+
+        <nav class="pager" id="pager" aria-label="Navegación del libro">
+          <button id="prev" aria-label="Página anterior">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l14 0" />
+              <path d="M5 12l4 4" />
+              <path d="M5 12l4 -4" />
+            </svg>
+          </button>
+          <span id="count" aria-live="polite">00 / 00</span>
+          <button id="next" aria-label="Página siguiente">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l14 0" />
+              <path d="M15 16l4 -4" />
+              <path d="M15 8l4 4" />
+            </svg>
+          </button>
+        </nav>
+        <div class="vignette"></div>
+      </section>
+
+      <aside
+        class="drawer"
+        id="drawer"
+        aria-label="Índice de proyectos"
+        aria-hidden="true"
+      >
+        <button
+          class="drawer-close"
+          id="drawerClose"
+          aria-label="Cerrar el índice"
+        >
+          Close
+        </button>
+        <div id="drawerBody"></div>
+      </aside>
+    </main>
+
+    <script src="js/portafolio.js"></script>
+  </body>
+</html>
